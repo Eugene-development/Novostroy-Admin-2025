@@ -265,12 +265,12 @@
           <div class="h-6 w-px bg-gray-200 lg:hidden" aria-hidden="true"></div>
   
           <div class="flex flex-1 gap-x-4 self-stretch lg:gap-x-6">
-            <form class="grid flex-1 grid-cols-1" action="#" method="GET">
+            <!-- <form class="grid flex-1 grid-cols-1" action="#" method="GET">
               <input type="search" name="search" aria-label="Search" class="col-start-1 row-start-1 block size-full bg-white pl-8 text-base text-gray-900 outline-none placeholder:text-gray-400 sm:text-sm/6" placeholder="Search">
               <svg class="pointer-events-none col-start-1 row-start-1 size-5 self-center text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
                 <path fill-rule="evenodd" d="M9 3.5a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11ZM2 9a7 7 0 1 1 12.452 4.391l3.328 3.329a.75.75 0 1 1-1.06 1.06l-3.329-3.328A7 7 0 0 1 2 9Z" clip-rule="evenodd" />
               </svg>
-            </form>
+            </form> -->
             <div class="flex items-center gap-x-4 lg:gap-x-6">
               <button type="button" class="-m-2.5 p-2.5 text-gray-400 hover:text-gray-500">
                 <span class="sr-only">View notifications</span>
@@ -305,11 +305,13 @@
                     From: "transform opacity-100 scale-100"
                     To: "transform opacity-0 scale-95"
                 -->
+					{#if false}
                 <div class="absolute right-0 z-10 mt-2.5 w-32 origin-top-right rounded-md bg-white py-2 shadow-lg ring-1 ring-gray-900/5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
                   <!-- Active: "bg-gray-50 outline-none", Not Active: "" -->
                   <a href="/" class="block px-3 py-1 text-sm/6 text-gray-900" role="menuitem" tabindex="-1" id="user-menu-item-0">Your profile</a>
                   <a href="/" class="block px-3 py-1 text-sm/6 text-gray-900" role="menuitem" tabindex="-1" id="user-menu-item-1">Sign out</a>
                 </div>
+				{/if}
               </div>
             </div>
           </div>
