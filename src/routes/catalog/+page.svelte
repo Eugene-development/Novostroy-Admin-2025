@@ -1,3 +1,9 @@
+<script>
+	/** @type {{ data: import('./$types').PageData }} */
+	let { data } = $props();
+    $inspect(data);
+</script>
+
 <section class="bg-gray-50 py-3 sm:py-5">
 	<div class="mx-auto max-w-screen-2xl px-4 lg:px-12">
 		<!-- Start coding here -->
@@ -110,11 +116,10 @@
 							id="brand"
 							class="peer block w-full appearance-none border-0 border-b-2 border-gray-200 bg-transparent px-0 py-2.5 text-sm text-gray-500 focus:border-gray-200 focus:outline-none focus:ring-0"
 							>
-                            <option selected="" value="all">Все</option>
-                            <option value="purple">Мебель</option>
-                            <option value="purple">Столешница</option>
-                            <option value="primary">Бытовая техника</option>
-                            <option value="pink">Сантехника</option>
+                            <option disabled selected>Каталог</option>
+                             {#each data.req.fullcatalog as item}
+                                <option value={item.slug}>{item.value}</option>
+                            {/each}
                         </select>
 					</div>
 					<div class="w-full">
