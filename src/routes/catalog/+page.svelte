@@ -4,25 +4,22 @@
         <div class="bg-white relative shadow-md sm:rounded-lg overflow-hidden">
             <div class="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0 md:space-x-4 p-4 border-b">
                 <div class="w-full flex items-center space-x-3">
-                    <h5 class="font-semibold">Flowbite Products</h5>
-                    <div class="text-gray-400 font-medium">6,560 results</div>
+                    <h5 class="font-semibold">Каталог</h5>
+                    <div class="text-gray-400 font-medium">Всего: 6 560</div>
                     <div data-tooltip-target="results-tooltip">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-400" viewbox="0 0 20 20" fill="currentColor" aria-hidden="true">
                             <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" />
                         </svg>
                         <span class="sr-only">More info</span>
                     </div>
-                    <div id="results-tooltip" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip ">
-                        Showing 1-10 of 6,560 results
-                        <div class="tooltip-arrow" data-popper-arrow=""></div>
-                    </div>
+                    
                 </div>
                 <div class="w-full flex flex-row items-center justify-end space-x-3">
-                    <button type="button" class="w-full md:w-auto flex items-center justify-center text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-3 py-2  focus:outline-none">
+                    <button type="button" class="w-full md:w-auto flex items-center justify-center text-gray-800 bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-3 py-2  focus:outline-none">
                         <svg class="h-3.5 w-3.5 mr-2" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                             <path clip-rule="evenodd" fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" />
                         </svg>
-                        Add new product
+                        Добавить
                     </button>
                     <button type="button" class="w-full md:w-auto flex items-center justify-center py-2 px-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:ring-4 focus:ring-gray-200  ">
                         <svg class="mr-2 w-3 h-3" xmlns="http://www.w3.org/2000/svg" fill="currentColor" stroke="currentColor" viewbox="0 0 12 13" aria-hidden="true">
@@ -43,11 +40,11 @@
                     <div id="actionsDropdown" class="hidden z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow ">
                         <ul class="py-1 text-sm text-gray-700 " aria-labelledby="actionsDropdownButton">
                             <li>
-                                <a href="#" class="block py-2 px-4 hover:bg-gray-100  ">Mass Edit</a>
+                                <a href="/" class="block py-2 px-4 hover:bg-gray-100  ">Mass Edit</a>
                             </li>
                         </ul>
                         <div class="py-1">
-                            <a href="#" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 ">Delete all</a>
+                            <a href="/" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 ">Delete all</a>
                         </div>
                     </div>
                 </div>
@@ -124,7 +121,7 @@
                                 </svg>
                             </td>
                             <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap flex items-center">
-                                <img src="https://flowbite.s3.amazonaws.com/blocks/application-ui/products/imac-front-image.png" alt="iMac Front Image" class="h-8 w-auto mr-3">
+                                <img src="https://flowbite.s3.amazonaws.com/blocks/application-ui/products/imac-front-image.png" alt="iMac Front" class="h-8 w-auto mr-3">
                                 Apple iMac 27&#34;
                             </th>
                             <td class="px-4 py-3">PC</td>
@@ -136,20 +133,11 @@
                                 <div class="w-fit bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded">Active</div>
                             </td>
                         </tr>
-                        <tr class=" flex-1 overflow-x-auto w-full" id="table-column-body-0" aria-labelledby="table-column-header-0">
+                        <tr class="hidden flex-1 overflow-x-auto w-full" id="table-column-body-0" aria-labelledby="table-column-header-0">
                             <td class="p-4 border-b" colspan="9">
                                 <div class="grid grid-cols-4 gap-4 mb-4">
                                     <div class="relative p-2 bg-gray-100 rounded-lg sm:w-full h-32 sm:h-36 flex items-center justify-center">
-                                        <img src="https://flowbite.s3.amazonaws.com/blocks/application-ui/products/imac-front-image.png" alt="iMac Front Image" class="h-full w-auto">
-                                    </div>
-                                    <div class="relative p-2 bg-gray-100 rounded-lg sm:w-full h-32 sm:h-36 flex items-center justify-center">
-                                        <img src="https://flowbite.s3.amazonaws.com/blocks/application-ui/products/imac-side-image.png" alt="iMac Side Image" class="h-full w-auto">
-                                    </div>
-                                    <div class="relative p-2 bg-gray-100 rounded-lg sm:w-full h-32 sm:h-36 flex items-center justify-center">
-                                        <img src="https://flowbite.s3.amazonaws.com/blocks/application-ui/products/imac-back-image.png" alt="iMac Back Image" class="h-full w-auto">
-                                    </div>
-                                    <div class="relative p-2 bg-gray-100 rounded-lg sm:w-full h-32 sm:h-36 flex items-center justify-center">
-                                        <img src="https://flowbite.s3.amazonaws.com/blocks/application-ui/products/imac-back-image.png" alt="iMac Back Image" class="h-full w-auto">
+                                        <img src="https://flowbite.s3.amazonaws.com/blocks/application-ui/products/imac-front-image.png" alt="iMac Front" class="h-full w-auto">
                                     </div>
                                 </div>
                                 <div>
@@ -228,8 +216,13 @@
                     </tbody>
                 </table>
             </div>
+            
             <div class="flex flex-col md:flex-row justify-between items-start md:items-center space-y-3 md:space-y-0 px-4 pt-3 pb-4" aria-label="Table navigation">
-                <div class="text-xs flex items-center space-x-5">
+                <div id="results-tooltip" role="tooltip" class=" z-10  inline-block px-3 py-2 text-sm font-medium text-gray-900 transition-opacity duration-300 bg-gray-100 rounded-lg shadow-sm  tooltip ">
+                    Showing 1-10 of 6,560 results
+                    <div class="tooltip-arrow" data-popper-arrow=""></div>
+                </div>
+                <!-- <div class="text-xs flex items-center space-x-5">
                     <div>
                         <div class="text-gray-500 mb-1">Purchase price</div>
                         <div class="font-medium">$ 3,567,890</div>
@@ -238,7 +231,7 @@
                         <div class="text-gray-500 mb-1">Total selling price</div>
                         <div class=" font-medium">$ 8,489,400</div>
                     </div>
-                </div>
+                </div> -->
                 <div class="flex items-center space-x-4"><button type="button" class="py-1.5 flex items-center text-sm font-medium text-center text-primary-700 rounded-lg hover:text-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300">Print barcodes</button><button type="button" class="py-1.5 flex items-center text-sm font-medium text-center text-primary-700 rounded-lg hover:text-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300">Export CSV</button></div>
             </div>
         </div>
