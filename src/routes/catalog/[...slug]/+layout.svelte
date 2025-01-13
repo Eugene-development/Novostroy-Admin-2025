@@ -10,7 +10,7 @@
 	// $inspect("currentSubCatalogIndex", currentSubCatalogIndex)
 	// $inspect("currentRubricIndex", currentRubricIndex)
 	// $inspect("currentCategoryIndex", currentCategoryIndex)
-	$inspect("fullcatalog", data.req.fullcatalog)
+	// $inspect("fullcatalog", data.req.fullcatalog)
 </script>	
 
 <section class="bg-gray-50 py-3 sm:py-5">
