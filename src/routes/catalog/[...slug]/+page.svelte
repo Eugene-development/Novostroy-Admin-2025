@@ -2,7 +2,6 @@
 		import { Category } from '../UI';
 
 	let { data } = $props();
-	$inspect("data", data);
 
 </script>
 

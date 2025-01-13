@@ -1,4 +1,8 @@
 <script>
+    /** @type {import('./$types').PageData} */
+    let { data } = $props();
+    $inspect("data", data);
+
 </script>
 
 <div class="overflow-x-auto">
@@ -108,6 +112,9 @@
 			</tr>
 		</thead>
 		<tbody data-accordion="table-column">
+
+            {#each data.product as item}
+
 			<tr
 				class="cursor-pointer border-b transition hover:bg-gray-200"
 				id="table-column-header-0"
@@ -146,11 +153,11 @@
 					class="flex items-center whitespace-nowrap px-4 py-3 font-medium text-gray-900"
 				>
 					<img
-						src="https://flowbite.s3.amazonaws.com/blocks/application-ui/products/imac-front-image.png"
+                    src={`${import.meta.env.VITE_S3}/catalog/${item.image[0].hash}`}
 						alt="iMac Front"
 						class="mr-3 h-8 w-auto"
 					/>
-					Apple iMac 27&#34;
+					{item.value}
 				</th>
 				<td class="px-4 py-3">PC</td>
 				<td class="whitespace-nowrap px-4 py-3 font-medium text-gray-900">Apple</td>
@@ -166,7 +173,7 @@
 				</td>
 			</tr>
 			<tr
-				class=" w-full flex-1 overflow-x-auto"
+				class="hidden w-full flex-1 overflow-x-auto"
 				id="table-column-body-0"
 				aria-labelledby="table-column-header-0"
 			>
@@ -297,6 +304,8 @@
 					</div>
 				</td>
 			</tr>
+
+{/each}
 		</tbody>
 	</table>
 </div>
