@@ -17,5 +17,4 @@ export async function load({ params, url }) {
 	} catch (error) {
 		console.log(error);
 	}
-	
 }

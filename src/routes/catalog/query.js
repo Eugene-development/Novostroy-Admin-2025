@@ -1,31 +1,30 @@
 import { gql } from 'graphql-request';
 
-
 export const FULLCATALOG = gql`
 	query fullcatalog {
 		fullcatalog {
 			value
 			slug
 			metaTitle {
-			value
+				value
 			}
 			metaDescription {
-			value
+				value
 			}
 			rubric {
-			value
-			slug
-			category {
-				is_active
 				value
 				slug
-			}
+				category {
+					is_active
+					value
+					slug
+				}
 			}
 			text {
-			value
+				value
 			}
 			image {
-			hash
+				hash
 			}
 		}
 	}
