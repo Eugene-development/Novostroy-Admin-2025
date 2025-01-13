@@ -12,7 +12,20 @@
 
 
     let currentRubricIndex = $state(null)
+	let currentRubricValue = $state('Рубрика')
+
+	let toggleRubric = (i, item) => {
+		currentRubricIndex = currentRubricIndex === i ? null : i
+		currentRubricValue = currentRubricValue === item.value ? 'Рубрика' : item.value
+	}
+
     let currentCategoryIndex = $state(null)
+	let currentCategoryValue = $state('Категория')
+
+	let toggleCategory = (i, item) => {
+		currentCategoryIndex = currentCategoryIndex === i ? null : i
+		currentCategoryValue = currentCategoryValue === item.value ? 'Категория' : item.value
+	}
 
 
 	// $inspect("currentSubCatalogIndex", currentSubCatalogIndex)
@@ -207,7 +220,7 @@
 										aria-label="Online"
 										class="inline-block size-2 shrink-0 rounded-full border border-transparent"
 									></span>
-									<span class="block truncate">Рубрика</span>
+									<span class="block truncate">{currentRubricValue}</span>
 								</span>
 								<svg
 									class="col-start-1 row-start-1 size-5 self-center justify-self-end text-green-500 sm:size-4"
@@ -232,7 +245,7 @@
 								aria-activedescendant="listbox-option-3"
 							>
 								{#each data.req.fullcatalog[currentSubCatalogIndex].rubric as item, i}
-									<button type="button" onclick={() => currentRubricIndex = i}
+									<button type="button" onclick={() => toggleRubric(i, item)}
 										class="relative cursor-pointer select-none py-2 pl-3 pr-9 text-gray-900 hover:bg-gray-100"
 										id="listbox-option-0"
 									>
@@ -271,7 +284,7 @@
 										aria-label="Online"
 										class="inline-block size-2 shrink-0 rounded-full border border-transparent"
 									></span>
-									<span class="block truncate">Категория</span>
+									<span class="block truncate">{currentCategoryValue}</span>
 								</span>
 								<svg
 									class="col-start-1 row-start-1 size-5 self-center justify-self-end text-green-500 sm:size-4"
@@ -296,7 +309,7 @@
 								aria-activedescendant="listbox-option-3"
 							>
 								{#each data.req.fullcatalog[currentSubCatalogIndex].rubric[currentRubricIndex].category as item, i}
-									<a href="/catalog/{item.parentable.parentable.slug}/{item.parentable.slug}/{item.slug}"
+									<a onclick={() => toggleCategory(i, item)} href="/catalog/{item.parentable.parentable.slug}/{item.parentable.slug}/{item.slug}"
 										class="relative cursor-pointer select-none py-2 pl-3 pr-9 text-gray-900 hover:bg-gray-100"
 										id="listbox-option-0"
 									>
