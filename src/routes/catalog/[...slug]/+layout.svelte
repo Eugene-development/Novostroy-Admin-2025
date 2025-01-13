@@ -3,6 +3,14 @@
 	let { children, data } = $props();
 
     let currentSubCatalogIndex = $state(null)
+    let currentSubCatalogValue = $state('Каталог')
+
+    let toggleSubCatalog = (i, item) => {
+        currentSubCatalogIndex = currentSubCatalogIndex === i ? null : i
+        currentSubCatalogValue = currentSubCatalogValue === item.value ? 'Каталог' : item.value
+    }
+
+
     let currentRubricIndex = $state(null)
     let currentCategoryIndex = $state(null)
 
@@ -135,7 +143,7 @@
 										aria-label="Online"
 										class="inline-block size-2 shrink-0 rounded-full border border-transparent"
 									></span>
-									<span class="block truncate">Каталог</span>
+									<span class="block truncate">{currentSubCatalogValue}</span>
 								</span>
 								<svg
 									class="col-start-1 row-start-1 size-5 self-center justify-self-end text-green-500 sm:size-4"
@@ -161,7 +169,7 @@
 							>
 								{#each data.req.fullcatalog as item, i}
 									<button type="button"
-                                        onclick={() => currentSubCatalogIndex = i}
+									onclick={() => toggleSubCatalog(i, item)}
 										class="relative cursor-pointer select-none py-2 pl-3 pr-9 text-gray-900 hover:bg-gray-100"
 										id="listbox-option-0"
 									>
