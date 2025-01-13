@@ -15,10 +15,12 @@
 
     let currentRubricIndex = $state(null)
 	let currentRubricValue = $state('Рубрика')
+	let visibleRubric = $state(false)
 
 	let toggleRubric = (i, item) => {
 		currentRubricIndex = currentRubricIndex === i ? null : i
 		currentRubricValue = currentRubricValue === item.value ? 'Рубрика' : item.value
+		visibleRubric = false
 	}
 
     let currentCategoryIndex = $state(null)
@@ -212,7 +214,7 @@
                     <div>
 						<!-- <label id="listbox-label" class="block text-sm/6 font-medium text-gray-900">Каталог</label> -->
 						<div class="relative mt-2">
-							<button 
+							<button onclick={() => visibleRubric = !visibleRubric}
 								type="button"
 								class="grid w-full cursor-default grid-cols-1 rounded-md bg-white py-1.5 pr-2 text-left text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-green-600 sm:text-sm/6"
 								aria-haspopup="listbox"
@@ -241,6 +243,7 @@
 								</svg>
 							</button>
 
+							{#if visibleRubric}
 							<div
 								class=" absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none sm:text-sm"
 								tabindex="-1"
@@ -268,6 +271,7 @@
 									</button>
 								{/each}
                             </div>
+							{/if}
 						</div>
 					</div>
                     {/if}
