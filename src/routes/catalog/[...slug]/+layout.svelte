@@ -3,9 +3,11 @@
 	let { children, data } = $props();
 
     let currentSubCatalogIndex = $state(null)
+    let currentRubricIndex = $state(null)
+    let currentCategoryIndex = $state(null)
 
 
-	$inspect(currentSubCatalogIndex);
+	$inspect(data);
 </script>
 
 <section class="bg-gray-50 py-3 sm:py-5">
