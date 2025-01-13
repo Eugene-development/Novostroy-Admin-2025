@@ -288,7 +288,7 @@
 								aria-activedescendant="listbox-option-3"
 							>
 								{#each data.req.fullcatalog[currentSubCatalogIndex].rubric[currentRubricIndex].category as item, i}
-									<a href="/{item.parentable.parentable.slug}/{item.parentable.slug}/{item.slug}"
+									<a href="/catalog/{item.parentable.parentable.slug}/{item.parentable.slug}/{item.slug}"
 										class="relative cursor-pointer select-none py-2 pl-3 pr-9 text-gray-900 hover:bg-gray-100"
 										id="listbox-option-0"
 									>
