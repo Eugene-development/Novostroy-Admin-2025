@@ -321,16 +321,14 @@
 							>
 								{#each data.req.fullcatalog[currentSubCatalogIndex].rubric[currentRubricIndex].category as item, i}
 									<a onclick={() => toggleCategory(i, item)} href="/catalog/{item.parentable.parentable.slug}/{item.parentable.slug}/{item.slug}"
-										class="relative cursor-pointer select-none py-2 pl-3 pr-9 text-gray-900 hover:bg-gray-100 w-full"
+										class=" cursor-pointer select-none py-2 pl-3 pr-9 text-gray-900 hover:bg-gray-100 w-full"
 										id="listbox-option-0"
 									>
 										<div class="flex items-center">
-											<!-- Online: "bg-green-400 forced-colors:bg-[Highlight]", Not Online: "bg-gray-200" -->
 											<span
 												class="inline-block size-2 shrink-0 rounded-full border border-transparent bg-green-400"
 												aria-hidden="true"
 											></span>
-											<!-- Selected: "font-semibold", Not Selected: "font-normal" -->
 											<span class="ml-3 block truncate font-normal">
 												{item.value}
 												<span class="sr-only"> is online</span>
