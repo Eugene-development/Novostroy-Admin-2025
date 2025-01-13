@@ -5,7 +5,7 @@
 
 </script>
 
-<div class="overflow-x-auto">
+<div class="overflow-x-auto ">
 	<table class="w-full text-left text-sm text-gray-500">
 		<thead class="bg-gray-50 text-xs uppercase">
 			<tr>

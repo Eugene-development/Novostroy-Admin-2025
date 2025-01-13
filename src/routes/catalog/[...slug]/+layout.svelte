@@ -25,10 +25,12 @@
 
     let currentCategoryIndex = $state(null)
 	let currentCategoryValue = $state('Категория')
+	let visibleCategory = $state(false)
 
 	let toggleCategory = (i, item) => {
 		currentCategoryIndex = currentCategoryIndex === i ? null : i
 		currentCategoryValue = currentCategoryValue === item.value ? 'Категория' : item.value
+		visibleCategory = false
 	}
 
 
@@ -144,10 +146,10 @@
 						</div>
 					</div>
 				</div>
-				<div class="grid w-full grid-cols-1 md:grid-cols-4 md:gap-4 lg:w-2/3">
+				<div class="grid w-full grid-cols-1 md:grid-cols-4 md:gap-4 lg:w-2/3 bg-gray-50 p-2 rounded-md">
 					<div>
 						<!-- <label id="listbox-label" class="block text-sm/6 font-medium text-gray-900">Каталог</label> -->
-						<div class="relative mt-2">
+						<div class="relative ">
 							<button onclick={() => visibleSubCatalog = !visibleSubCatalog}
 								type="button"
 								class="grid w-full cursor-default grid-cols-1 rounded-md bg-white py-1.5 pr-2 text-left text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-green-600 sm:text-sm/6"
@@ -179,7 +181,7 @@
 
 							{#if visibleSubCatalog}
 							<div
-								class=" absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none sm:text-sm"
+								class="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none sm:text-sm"
 								tabindex="-1"
 								role="listbox"
 								aria-labelledby="listbox-label"
@@ -188,7 +190,7 @@
 								{#each data.req.fullcatalog as item, i}
 									<button type="button"
 									onclick={() => toggleSubCatalog(i, item)}
-										class="relative cursor-pointer select-none py-2 pl-3 pr-9 text-gray-900 hover:bg-gray-100"
+										class="relative cursor-pointer select-none py-2 pl-3 pr-9 text-gray-900 hover:bg-gray-100 w-full"
 										id="listbox-option-0"
 									>
 										<div class="flex items-center">
@@ -213,7 +215,7 @@
                     {#if currentSubCatalogIndex !== null}
                     <div>
 						<!-- <label id="listbox-label" class="block text-sm/6 font-medium text-gray-900">Каталог</label> -->
-						<div class="relative mt-2">
+						<div class="relative ">
 							<button onclick={() => visibleRubric = !visibleRubric}
 								type="button"
 								class="grid w-full cursor-default grid-cols-1 rounded-md bg-white py-1.5 pr-2 text-left text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-green-600 sm:text-sm/6"
@@ -253,7 +255,7 @@
 							>
 								{#each data.req.fullcatalog[currentSubCatalogIndex].rubric as item, i}
 									<button type="button" onclick={() => toggleRubric(i, item)}
-										class="relative cursor-pointer select-none py-2 pl-3 pr-9 text-gray-900 hover:bg-gray-100"
+										class="relative cursor-pointer select-none py-2 pl-3 pr-9 text-gray-900 hover:bg-gray-100 w-full"
 										id="listbox-option-0"
 									>
 										<div class="flex items-center">
@@ -279,8 +281,8 @@
 					{#if currentRubricIndex !== null}
                     <div>
 						<!-- <label id="listbox-label" class="block text-sm/6 font-medium text-gray-900">Каталог</label> -->
-						<div class="relative mt-2">
-							<button
+						<div class="relative ">
+							<button onclick={() => visibleCategory = !visibleCategory}
 								type="button"
 								class="grid w-full cursor-default grid-cols-1 rounded-md bg-white py-1.5 pr-2 text-left text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-green-600 sm:text-sm/6"
 								aria-haspopup="listbox"
@@ -309,8 +311,9 @@
 								</svg>
 							</button>
 
+							{#if visibleCategory}
 							<div
-								class=" absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none sm:text-sm"
+								class=" absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none sm:text-sm "
 								tabindex="-1"
 								role="listbox"
 								aria-labelledby="listbox-label"
@@ -318,7 +321,7 @@
 							>
 								{#each data.req.fullcatalog[currentSubCatalogIndex].rubric[currentRubricIndex].category as item, i}
 									<a onclick={() => toggleCategory(i, item)} href="/catalog/{item.parentable.parentable.slug}/{item.parentable.slug}/{item.slug}"
-										class="relative cursor-pointer select-none py-2 pl-3 pr-9 text-gray-900 hover:bg-gray-100"
+										class="relative cursor-pointer select-none py-2 pl-3 pr-9 text-gray-900 hover:bg-gray-100 w-full"
 										id="listbox-option-0"
 									>
 										<div class="flex items-center">
@@ -336,6 +339,7 @@
 									</a>
 								{/each}
                             </div>
+							{/if}
 						</div>
 					</div>
                     {/if}
