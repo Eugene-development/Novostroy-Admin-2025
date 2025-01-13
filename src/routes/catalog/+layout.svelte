@@ -1,6 +1,7 @@
 <script>
 	/** @type {{ data: import('./$types').LayoutData, children: import('svelte').Snippet }} */
 	let { children, data } = $props();
+    $inspect(data);
 
 </script>
 
@@ -134,19 +135,21 @@
                               From: "opacity-100"
                               To: "opacity-0"
                           -->
-                          <ul class="hidden absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none sm:text-sm" tabindex="-1" role="listbox" aria-labelledby="listbox-label" aria-activedescendant="listbox-option-3">
+                          <ul class=" absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none sm:text-sm" tabindex="-1" role="listbox" aria-labelledby="listbox-label" aria-activedescendant="listbox-option-3">
                             <!--
                               Select option, manage highlight styles based on mouseenter/mouseleave and keyboard navigation.
                       
                               Highlighted: "bg-green-600 text-white outline-none", Not Highlighted: "text-gray-900"
                             -->
-                            <li class="relative cursor-default select-none py-2 pl-3 pr-9 text-gray-900" id="listbox-option-0" role="option">
+                            {#each data.req.fullcatalog as item}
+
+                            <li class="relative cursor-pointer hover:bg-gray-100 select-none py-2 pl-3 pr-9 text-gray-900" id="listbox-option-0" role="option">
                               <div class="flex items-center">
                                 <!-- Online: "bg-green-400 forced-colors:bg-[Highlight]", Not Online: "bg-gray-200" -->
                                 <span class="inline-block size-2 shrink-0 rounded-full border border-transparent bg-green-400" aria-hidden="true"></span>
                                 <!-- Selected: "font-semibold", Not Selected: "font-normal" -->
                                 <span class="ml-3 block truncate font-normal">
-                                  Wade Cooper
+                                  {item.value}
                                   <span class="sr-only"> is online</span>
                                 </span>
                               </div>
@@ -156,35 +159,14 @@
                       
                                 Highlighted: "text-white", Not Highlighted: "text-green-600"
                               -->
-                              <span class="absolute inset-y-0 right-0 flex items-center pr-4 text-green-600">
+
+                              <!-- <span class="absolute  inset-y-0 right-0 flex items-center pr-4 text-green-600">
                                 <svg class="size-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
                                   <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd" />
                                 </svg>
-                              </span>
+                              </span> -->
                             </li>
-                            <li class="relative cursor-default select-none py-2 pl-3 pr-9 text-gray-900" id="listbox-option-0" role="option">
-                              <div class="flex items-center">
-                                <!-- Online: "bg-green-400 forced-colors:bg-[Highlight]", Not Online: "bg-gray-200" -->
-                                <span class="inline-block size-2 shrink-0 rounded-full border border-transparent bg-green-400" aria-hidden="true"></span>
-                                <!-- Selected: "font-semibold", Not Selected: "font-normal" -->
-                                <span class="ml-3 block truncate font-normal">
-                                  Wade Cooper
-                                  <span class="sr-only"> is online</span>
-                                </span>
-                              </div>
-                      
-                              <!--
-                                Checkmark, only display for selected option.
-                      
-                                Highlighted: "text-white", Not Highlighted: "text-green-600"
-                              -->
-                              <span class="absolute inset-y-0 right-0 flex items-center pr-4 text-green-600">
-                                <svg class="size-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
-                                  <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd" />
-                                </svg>
-                              </span>
-                            </li>
-                      
+                            {/each}
                             <!-- More items... -->
                           </ul>
                         </div>

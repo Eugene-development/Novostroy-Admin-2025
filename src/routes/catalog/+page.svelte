@@ -1,13 +1,5 @@
 <script>
-	/** @type {{ data: import('./$types').PageData }} */
-	let { data } = $props();
-    $inspect(data);
 </script>
-
-
-
-
-
 
 			<div class="overflow-x-auto">
 				<table class="w-full text-left text-sm text-gray-500">
