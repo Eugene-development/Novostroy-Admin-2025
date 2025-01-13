@@ -172,7 +172,7 @@
 											></span>
 											<!-- Selected: "font-semibold", Not Selected: "font-normal" -->
 											<span class="ml-3 block truncate font-normal">
-												{item.value}-{i}
+												{item.value}
 												<span class="sr-only"> is online</span>
 											</span>
 										</div>
@@ -235,7 +235,7 @@
 											></span>
 											<!-- Selected: "font-semibold", Not Selected: "font-normal" -->
 											<span class="ml-3 block truncate font-normal">
-												{item.value}-{i}
+												{item.value}
 												<span class="sr-only"> is online</span>
 											</span>
 										</div>
@@ -287,7 +287,7 @@
 								aria-activedescendant="listbox-option-3"
 							>
 								{#each data.req.fullcatalog[currentSubCatalogIndex].rubric[currentRubricIndex].category as item, i}
-									<button type="button"
+									<a href="/catalog/{item.slug}"
 										class="relative cursor-pointer select-none py-2 pl-3 pr-9 text-gray-900 hover:bg-gray-100"
 										id="listbox-option-0"
 									>
@@ -299,11 +299,11 @@
 											></span>
 											<!-- Selected: "font-semibold", Not Selected: "font-normal" -->
 											<span class="ml-3 block truncate font-normal">
-												{item.value}-{i}
+												{item.value}
 												<span class="sr-only"> is online</span>
 											</span>
 										</div>
-									</button>
+									</a>
 								{/each}
                             </div>
 						</div>
@@ -334,7 +334,7 @@
 							></select
 						>
 					</div> -->
-					<div class="w-full">
+					<!-- <div class="w-full">
 						<label for="category" class="sr-only">Статус</label><select
 							id="category"
 							class="peer block w-full appearance-none border-0 border-b-2 border-gray-200 bg-transparent px-0 py-2.5 text-sm text-gray-500 focus:border-gray-200 focus:outline-none focus:ring-0"
@@ -342,7 +342,7 @@
 								value="phone">Не активно</option
 							></select
 						>
-					</div>
+					</div> -->
 				</div>
 			</div>
 
