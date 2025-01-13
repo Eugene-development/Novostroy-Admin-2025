@@ -7,9 +7,10 @@
     let currentCategoryIndex = $state(null)
 
 
-	$inspect("currentSubCatalogIndex", currentSubCatalogIndex)
-	$inspect("currentRubricIndex", currentRubricIndex)
-	$inspect("currentCategoryIndex", currentCategoryIndex)
+	// $inspect("currentSubCatalogIndex", currentSubCatalogIndex)
+	// $inspect("currentRubricIndex", currentRubricIndex)
+	// $inspect("currentCategoryIndex", currentCategoryIndex)
+	$inspect("fullcatalog", data.req.fullcatalog)
 </script>	
 
 <section class="bg-gray-50 py-3 sm:py-5">
@@ -287,7 +288,7 @@
 								aria-activedescendant="listbox-option-3"
 							>
 								{#each data.req.fullcatalog[currentSubCatalogIndex].rubric[currentRubricIndex].category as item, i}
-									<a href="/catalog/{item.slug}"
+									<a href="/{item.parentable.parentable.slug}/{item.parentable.slug}/{item.slug}"
 										class="relative cursor-pointer select-none py-2 pl-3 pr-9 text-gray-900 hover:bg-gray-100"
 										id="listbox-option-0"
 									>
