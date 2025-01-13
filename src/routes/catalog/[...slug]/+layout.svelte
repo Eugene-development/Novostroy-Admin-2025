@@ -320,11 +320,11 @@
 								aria-activedescendant="listbox-option-3"
 							>
 								{#each data.req.fullcatalog[currentSubCatalogIndex].rubric[currentRubricIndex].category as item, i}
-									<a onclick={() => toggleCategory(i, item)} href="/catalog/{item.parentable.parentable.slug}/{item.parentable.slug}/{item.slug}"
-										class=" cursor-pointer select-none py-2 pl-3 pr-9 text-gray-900 hover:bg-gray-100 w-full"
+									<button onclick={() => toggleCategory(i, item)} 
+										class="relative cursor-pointer select-none py-2 pl-3 pr-9 text-gray-900 hover:bg-gray-100 w-full"
 										id="listbox-option-0"
 									>
-										<div class="flex items-center">
+										<a href="/catalog/{item.parentable.parentable.slug}/{item.parentable.slug}/{item.slug}" class="flex items-center">
 											<span
 												class="inline-block size-2 shrink-0 rounded-full border border-transparent bg-green-400"
 												aria-hidden="true"
@@ -333,8 +333,8 @@
 												{item.value}
 												<span class="sr-only"> is online</span>
 											</span>
-										</div>
-									</a>
+										</a>
+									</button>
 								{/each}
                             </div>
 							{/if}
