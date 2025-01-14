@@ -24,7 +24,7 @@
 				</th>
 				<th scope="col" class="min-w-[14rem] px-4 py-3">Продукт</th>
 				<th scope="col" class="min-w-[10rem] px-4 py-3">
-					Категория
+					Рубрика
 					<svg
 						class="ml-1 inline-block h-4 w-4"
 						fill="currentColor"
@@ -40,7 +40,7 @@
 					</svg>
 				</th>
 				<th scope="col" class="min-w-[6rem] px-4 py-3">
-					Бренд
+					Категория
 					<svg
 						class="ml-1 inline-block h-4 w-4"
 						fill="currentColor"
@@ -159,8 +159,8 @@
 					/>
 					{item.value}
 				</th>
-				<td class="px-4 py-3">PC</td>
-				<td class="whitespace-nowrap px-4 py-3 font-medium text-gray-900">Apple</td>
+				<td class="px-4 py-3">{item.parentable.parentable.value}</td>
+				<td class="whitespace-nowrap px-4 py-3 font-medium text-gray-900">{item.parentable.value}</td>
 				<td class="whitespace-nowrap px-4 py-3 font-medium text-gray-900">$2999</td>
 				<td class="whitespace-nowrap px-4 py-3 font-medium text-gray-900">200</td>
 				<!-- <td class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap">245</td> -->
