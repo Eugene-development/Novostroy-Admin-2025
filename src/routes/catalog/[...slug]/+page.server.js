@@ -9,20 +9,17 @@ export async function load({ params, url }) {
 	const segments = url.pathname.split('/').filter((segment) => segment.length > 0);
 
 	let isCategory;
-    try {
-        const variables = {
-            key,
-            slug: segments[3]
-        };
-        const req = await request(urlCRUD, CATEGORY, variables);
-        return {
-            req,
-            isCategory: true
-        };
-    } catch (error) {
-        console.log(error);
-    }
-
-	
+	try {
+		const variables = {
+			key,
+			slug: segments[3]
+		};
+		const req = await request(urlCRUD, CATEGORY, variables);
+		return {
+			req,
+			isCategory: true
+		};
+	} catch (error) {
+		console.log(error);
 	}
-
+}

@@ -2,43 +2,41 @@
 	/** @type {{ data: import('./$types').LayoutData, children: import('svelte').Snippet }} */
 	let { children, data } = $props();
 
-    let currentSubCatalogIndex = $state(null)
-    let currentSubCatalogValue = $state('Каталог')
-	let visibleSubCatalog = $state(false)
+	let currentSubCatalogIndex = $state(null);
+	let currentSubCatalogValue = $state('Каталог');
+	let visibleSubCatalog = $state(false);
 
-    let toggleSubCatalog = (i, item) => {
-        currentSubCatalogIndex = currentSubCatalogIndex === i ? null : i
-        currentSubCatalogValue = currentSubCatalogValue === item.value ? 'Каталог' : item.value
-        visibleSubCatalog = false
-    }
+	let toggleSubCatalog = (i, item) => {
+		currentSubCatalogIndex = currentSubCatalogIndex === i ? null : i;
+		currentSubCatalogValue = currentSubCatalogValue === item.value ? 'Каталог' : item.value;
+		visibleSubCatalog = false;
+	};
 
-
-    let currentRubricIndex = $state(null)
-	let currentRubricValue = $state('Рубрика')
-	let visibleRubric = $state(false)
+	let currentRubricIndex = $state(null);
+	let currentRubricValue = $state('Рубрика');
+	let visibleRubric = $state(false);
 
 	let toggleRubric = (i, item) => {
-		currentRubricIndex = currentRubricIndex === i ? null : i
-		currentRubricValue = currentRubricValue === item.value ? 'Рубрика' : item.value
-		visibleRubric = false
-	}
+		currentRubricIndex = currentRubricIndex === i ? null : i;
+		currentRubricValue = currentRubricValue === item.value ? 'Рубрика' : item.value;
+		visibleRubric = false;
+	};
 
-    let currentCategoryIndex = $state(null)
-	let currentCategoryValue = $state('Категория')
-	let visibleCategory = $state(false)
+	let currentCategoryIndex = $state(null);
+	let currentCategoryValue = $state('Категория');
+	let visibleCategory = $state(false);
 
 	let toggleCategory = (i, item) => {
-		currentCategoryIndex = currentCategoryIndex === i ? null : i
-		currentCategoryValue = currentCategoryValue === item.value ? 'Категория' : item.value
-		visibleCategory = false
-	}
-
+		currentCategoryIndex = currentCategoryIndex === i ? null : i;
+		currentCategoryValue = currentCategoryValue === item.value ? 'Категория' : item.value;
+		visibleCategory = false;
+	};
 
 	// $inspect("currentSubCatalogIndex", currentSubCatalogIndex)
 	// $inspect("currentRubricIndex", currentRubricIndex)
 	// $inspect("currentCategoryIndex", currentCategoryIndex)
 	// $inspect("fullcatalog", data.req.fullcatalog)
-</script>	
+</script>
 
 <section class="bg-gray-50 py-3 sm:py-5">
 	<div class="mx-auto max-w-screen-2xl px-4 lg:px-12">
@@ -146,11 +144,14 @@
 						</div>
 					</div>
 				</div>
-				<div class="grid w-full grid-cols-1 md:grid-cols-4 md:gap-4 lg:w-2/3 bg-gray-50 p-2 rounded-md">
+				<div
+					class="grid w-full grid-cols-1 rounded-md bg-gray-50 p-2 md:grid-cols-4 md:gap-4 lg:w-2/3"
+				>
 					<div>
 						<!-- <label id="listbox-label" class="block text-sm/6 font-medium text-gray-900">Каталог</label> -->
-						<div class="relative ">
-							<button onclick={() => visibleSubCatalog = !visibleSubCatalog}
+						<div class="relative">
+							<button
+								onclick={() => (visibleSubCatalog = !visibleSubCatalog)}
 								type="button"
 								class="grid w-full cursor-default grid-cols-1 rounded-md bg-white py-1.5 pr-2 text-left text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-green-600 sm:text-sm/6"
 								aria-haspopup="listbox"
@@ -180,171 +181,178 @@
 							</button>
 
 							{#if visibleSubCatalog}
-							<div
-								class="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none sm:text-sm"
-								tabindex="-1"
-								role="listbox"
-								aria-labelledby="listbox-label"
-								aria-activedescendant="listbox-option-3"
-							>
-								{#each data.req.fullcatalog as item, i}
-									<button type="button"
-									onclick={() => toggleSubCatalog(i, item)}
-										class="relative cursor-pointer select-none py-2 pl-3 pr-9 text-gray-900 hover:bg-gray-100 w-full"
-										id="listbox-option-0"
-									>
-										<div class="flex items-center">
-											<!-- Online: "bg-green-400 forced-colors:bg-[Highlight]", Not Online: "bg-gray-200" -->
-											<span
-												class="inline-block size-2 shrink-0 rounded-full border border-transparent bg-green-400"
-												aria-hidden="true"
-											></span>
-											<!-- Selected: "font-semibold", Not Selected: "font-normal" -->
-											<span class="ml-3 block truncate font-normal">
-												{item.value}
-												<span class="sr-only"> is online</span>
-											</span>
-										</div>
-									</button>
-								{/each}
-							</div>
-							{/if}
-						</div>
-					</div>
-
-                    {#if currentSubCatalogIndex !== null}
-                    <div>
-						<!-- <label id="listbox-label" class="block text-sm/6 font-medium text-gray-900">Каталог</label> -->
-						<div class="relative ">
-							<button onclick={() => visibleRubric = !visibleRubric}
-								type="button"
-								class="grid w-full cursor-default grid-cols-1 rounded-md bg-white py-1.5 pr-2 text-left text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-green-600 sm:text-sm/6"
-								aria-haspopup="listbox"
-								aria-expanded="true"
-								aria-labelledby="listbox-label"
-							>
-								<span class="col-start-1 row-start-1 flex items-center gap-3 pr-6">
-									<span
-										aria-label="Online"
-										class="inline-block size-2 shrink-0 rounded-full border border-transparent"
-									></span>
-									<span class="block truncate">{currentRubricValue}</span>
-								</span>
-								<svg
-									class="col-start-1 row-start-1 size-5 self-center justify-self-end text-green-500 sm:size-4"
-									viewBox="0 0 16 16"
-									fill="currentColor"
-									aria-hidden="true"
-									data-slot="icon"
+								<div
+									class="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none sm:text-sm"
+									tabindex="-1"
+									role="listbox"
+									aria-labelledby="listbox-label"
+									aria-activedescendant="listbox-option-3"
 								>
-									<path
-										fill-rule="evenodd"
-										d="M5.22 10.22a.75.75 0 0 1 1.06 0L8 11.94l1.72-1.72a.75.75 0 1 1 1.06 1.06l-2.25 2.25a.75.75 0 0 1-1.06 0l-2.25-2.25a.75.75 0 0 1 0-1.06ZM10.78 5.78a.75.75 0 0 1-1.06 0L8 4.06 6.28 5.78a.75.75 0 0 1-1.06-1.06l2.25-2.25a.75.75 0 0 1 1.06 0l2.25 2.25a.75.75 0 0 1 0 1.06Z"
-										clip-rule="evenodd"
-									/>
-								</svg>
-							</button>
-
-							{#if visibleRubric}
-							<div
-								class=" absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none sm:text-sm"
-								tabindex="-1"
-								role="listbox"
-								aria-labelledby="listbox-label"
-								aria-activedescendant="listbox-option-3"
-							>
-								{#each data.req.fullcatalog[currentSubCatalogIndex].rubric as item, i}
-									<button type="button" onclick={() => toggleRubric(i, item)}
-										class="relative cursor-pointer select-none py-2 pl-3 pr-9 text-gray-900 hover:bg-gray-100 w-full"
-										id="listbox-option-0"
-									>
-										<div class="flex items-center">
-											<!-- Online: "bg-green-400 forced-colors:bg-[Highlight]", Not Online: "bg-gray-200" -->
-											<span
-												class="inline-block size-2 shrink-0 rounded-full border border-transparent bg-green-400"
-												aria-hidden="true"
-											></span>
-											<!-- Selected: "font-semibold", Not Selected: "font-normal" -->
-											<span class="ml-3 block truncate font-normal">
-												{item.value}
-												<span class="sr-only"> is online</span>
-											</span>
-										</div>
-									</button>
-								{/each}
-                            </div>
+									{#each data.req.fullcatalog as item, i}
+										<button
+											type="button"
+											onclick={() => toggleSubCatalog(i, item)}
+											class="relative w-full cursor-pointer select-none py-2 pl-3 pr-9 text-gray-900 hover:bg-gray-100"
+											id="listbox-option-0"
+										>
+											<div class="flex items-center">
+												<!-- Online: "bg-green-400 forced-colors:bg-[Highlight]", Not Online: "bg-gray-200" -->
+												<span
+													class="inline-block size-2 shrink-0 rounded-full border border-transparent bg-green-400"
+													aria-hidden="true"
+												></span>
+												<!-- Selected: "font-semibold", Not Selected: "font-normal" -->
+												<span class="ml-3 block truncate font-normal">
+													{item.value}
+													<span class="sr-only"> is online</span>
+												</span>
+											</div>
+										</button>
+									{/each}
+								</div>
 							{/if}
 						</div>
 					</div>
-                    {/if}
+
+					{#if currentSubCatalogIndex !== null}
+						<div>
+							<!-- <label id="listbox-label" class="block text-sm/6 font-medium text-gray-900">Каталог</label> -->
+							<div class="relative">
+								<button
+									onclick={() => (visibleRubric = !visibleRubric)}
+									type="button"
+									class="grid w-full cursor-default grid-cols-1 rounded-md bg-white py-1.5 pr-2 text-left text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-green-600 sm:text-sm/6"
+									aria-haspopup="listbox"
+									aria-expanded="true"
+									aria-labelledby="listbox-label"
+								>
+									<span class="col-start-1 row-start-1 flex items-center gap-3 pr-6">
+										<span
+											aria-label="Online"
+											class="inline-block size-2 shrink-0 rounded-full border border-transparent"
+										></span>
+										<span class="block truncate">{currentRubricValue}</span>
+									</span>
+									<svg
+										class="col-start-1 row-start-1 size-5 self-center justify-self-end text-green-500 sm:size-4"
+										viewBox="0 0 16 16"
+										fill="currentColor"
+										aria-hidden="true"
+										data-slot="icon"
+									>
+										<path
+											fill-rule="evenodd"
+											d="M5.22 10.22a.75.75 0 0 1 1.06 0L8 11.94l1.72-1.72a.75.75 0 1 1 1.06 1.06l-2.25 2.25a.75.75 0 0 1-1.06 0l-2.25-2.25a.75.75 0 0 1 0-1.06ZM10.78 5.78a.75.75 0 0 1-1.06 0L8 4.06 6.28 5.78a.75.75 0 0 1-1.06-1.06l2.25-2.25a.75.75 0 0 1 1.06 0l2.25 2.25a.75.75 0 0 1 0 1.06Z"
+											clip-rule="evenodd"
+										/>
+									</svg>
+								</button>
+
+								{#if visibleRubric}
+									<div
+										class=" absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none sm:text-sm"
+										tabindex="-1"
+										role="listbox"
+										aria-labelledby="listbox-label"
+										aria-activedescendant="listbox-option-3"
+									>
+										{#each data.req.fullcatalog[currentSubCatalogIndex].rubric as item, i}
+											<button
+												type="button"
+												onclick={() => toggleRubric(i, item)}
+												class="relative w-full cursor-pointer select-none py-2 pl-3 pr-9 text-gray-900 hover:bg-gray-100"
+												id="listbox-option-0"
+											>
+												<div class="flex items-center">
+													<!-- Online: "bg-green-400 forced-colors:bg-[Highlight]", Not Online: "bg-gray-200" -->
+													<span
+														class="inline-block size-2 shrink-0 rounded-full border border-transparent bg-green-400"
+														aria-hidden="true"
+													></span>
+													<!-- Selected: "font-semibold", Not Selected: "font-normal" -->
+													<span class="ml-3 block truncate font-normal">
+														{item.value}
+														<span class="sr-only"> is online</span>
+													</span>
+												</div>
+											</button>
+										{/each}
+									</div>
+								{/if}
+							</div>
+						</div>
+					{/if}
 
 					{#if currentRubricIndex !== null}
-                    <div>
-						<!-- <label id="listbox-label" class="block text-sm/6 font-medium text-gray-900">Каталог</label> -->
-						<div class="relative ">
-							<button onclick={() => visibleCategory = !visibleCategory}
-								type="button"
-								class="grid w-full cursor-default grid-cols-1 rounded-md bg-white py-1.5 pr-2 text-left text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-green-600 sm:text-sm/6"
-								aria-haspopup="listbox"
-								aria-expanded="true"
-								aria-labelledby="listbox-label"
-							>
-								<span class="col-start-1 row-start-1 flex items-center gap-3 pr-6">
-									<span
-										aria-label="Online"
-										class="inline-block size-2 shrink-0 rounded-full border border-transparent"
-									></span>
-									<span class="block truncate">{currentCategoryValue}</span>
-								</span>
-								<svg
-									class="col-start-1 row-start-1 size-5 self-center justify-self-end text-green-500 sm:size-4"
-									viewBox="0 0 16 16"
-									fill="currentColor"
-									aria-hidden="true"
-									data-slot="icon"
+						<div>
+							<!-- <label id="listbox-label" class="block text-sm/6 font-medium text-gray-900">Каталог</label> -->
+							<div class="relative">
+								<button
+									onclick={() => (visibleCategory = !visibleCategory)}
+									type="button"
+									class="grid w-full cursor-default grid-cols-1 rounded-md bg-white py-1.5 pr-2 text-left text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-green-600 sm:text-sm/6"
+									aria-haspopup="listbox"
+									aria-expanded="true"
+									aria-labelledby="listbox-label"
 								>
-									<path
-										fill-rule="evenodd"
-										d="M5.22 10.22a.75.75 0 0 1 1.06 0L8 11.94l1.72-1.72a.75.75 0 1 1 1.06 1.06l-2.25 2.25a.75.75 0 0 1-1.06 0l-2.25-2.25a.75.75 0 0 1 0-1.06ZM10.78 5.78a.75.75 0 0 1-1.06 0L8 4.06 6.28 5.78a.75.75 0 0 1-1.06-1.06l2.25-2.25a.75.75 0 0 1 1.06 0l2.25 2.25a.75.75 0 0 1 0 1.06Z"
-										clip-rule="evenodd"
-									/>
-								</svg>
-							</button>
-
-							{#if visibleCategory}
-							<div
-								class=" absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none sm:text-sm "
-								tabindex="-1"
-								role="listbox"
-								aria-labelledby="listbox-label"
-								aria-activedescendant="listbox-option-3"
-							>
-								{#each data.req.fullcatalog[currentSubCatalogIndex].rubric[currentRubricIndex].category as item, i}
-									<button onclick={() => toggleCategory(i, item)} 
-										class="relative cursor-pointer select-none py-2 pl-3 pr-9 text-gray-900 hover:bg-gray-100 w-full"
-										id="listbox-option-0"
+									<span class="col-start-1 row-start-1 flex items-center gap-3 pr-6">
+										<span
+											aria-label="Online"
+											class="inline-block size-2 shrink-0 rounded-full border border-transparent"
+										></span>
+										<span class="block truncate">{currentCategoryValue}</span>
+									</span>
+									<svg
+										class="col-start-1 row-start-1 size-5 self-center justify-self-end text-green-500 sm:size-4"
+										viewBox="0 0 16 16"
+										fill="currentColor"
+										aria-hidden="true"
+										data-slot="icon"
 									>
-										<a href="/catalog/{item.parentable.parentable.slug}/{item.parentable.slug}/{item.slug}" class="flex items-center">
-											<span
-												class="inline-block size-2 shrink-0 rounded-full border border-transparent bg-green-400"
-												aria-hidden="true"
-											></span>
-											<span class="ml-3 block truncate font-normal">
-												{item.value}
-												<span class="sr-only"> is online</span>
-											</span>
-										</a>
-									</button>
-								{/each}
-                            </div>
-							{/if}
+										<path
+											fill-rule="evenodd"
+											d="M5.22 10.22a.75.75 0 0 1 1.06 0L8 11.94l1.72-1.72a.75.75 0 1 1 1.06 1.06l-2.25 2.25a.75.75 0 0 1-1.06 0l-2.25-2.25a.75.75 0 0 1 0-1.06ZM10.78 5.78a.75.75 0 0 1-1.06 0L8 4.06 6.28 5.78a.75.75 0 0 1-1.06-1.06l2.25-2.25a.75.75 0 0 1 1.06 0l2.25 2.25a.75.75 0 0 1 0 1.06Z"
+											clip-rule="evenodd"
+										/>
+									</svg>
+								</button>
+
+								{#if visibleCategory}
+									<div
+										class=" absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none sm:text-sm"
+										tabindex="-1"
+										role="listbox"
+										aria-labelledby="listbox-label"
+										aria-activedescendant="listbox-option-3"
+									>
+										{#each data.req.fullcatalog[currentSubCatalogIndex].rubric[currentRubricIndex].category as item, i}
+											<button
+												onclick={() => toggleCategory(i, item)}
+												class="relative w-full cursor-pointer select-none py-2 pl-3 pr-9 text-gray-900 hover:bg-gray-100"
+												id="listbox-option-0"
+											>
+												<a
+													href="/catalog/{item.parentable.parentable.slug}/{item.parentable
+														.slug}/{item.slug}"
+													class="flex items-center"
+												>
+													<span
+														class="inline-block size-2 shrink-0 rounded-full border border-transparent bg-green-400"
+														aria-hidden="true"
+													></span>
+													<span class="ml-3 block truncate font-normal">
+														{item.value}
+														<span class="sr-only"> is online</span>
+													</span>
+												</a>
+											</button>
+										{/each}
+									</div>
+								{/if}
+							</div>
 						</div>
-					</div>
-                    {/if}
+					{/if}
 
-
-
-	
 					<!-- <div class="w-full">
 						<label for="price" class="sr-only">Рубрика</label><select
 							id="price"

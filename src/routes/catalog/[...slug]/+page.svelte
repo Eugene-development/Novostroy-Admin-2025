@@ -1,8 +1,7 @@
 <script>
-		import { Category } from '../UI';
+	import { Category } from '../UI';
 
 	let { data } = $props();
-
 </script>
 
 <!-- <Category /> -->
