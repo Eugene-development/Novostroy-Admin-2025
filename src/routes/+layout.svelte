@@ -1,5 +1,9 @@
 <script>
 	import '../app.css';
+	import ProductFormCreate from './layout/modals/ProductFormCreate/index.svelte'
+	import ProductFormUpdate from './layout/modals/ProductFormUpdate/index.svelte'
+	import ProductFormDelete from './layout/modals/ProductFormDelete/index.svelte'
+
 	let { children } = $props();
 </script>
 
@@ -669,3 +673,9 @@
 		</main>
 	</div>
 </div>
+
+
+<!-- Modals -->
+<ProductFormCreate />
+<ProductFormUpdate />
+<ProductFormDelete />
