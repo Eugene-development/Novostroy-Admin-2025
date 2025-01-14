@@ -116,7 +116,7 @@
             {#each data.product as item}
 
 			<tr
-				class="cursor-pointer border-b transition hover:bg-gray-200"
+				class="cursor-pointer border-t transition hover:bg-gray-200"
 				id="table-column-header-0"
 				data-accordion-target="#table-column-body-0"
 				aria-expanded="false"
@@ -173,7 +173,7 @@
 				</td>
 			</tr>
 			<tr
-				class="hidden w-full flex-1 overflow-x-auto"
+				class=" w-full flex-1 overflow-x-auto"
 				id="table-column-body-0"
 				aria-labelledby="table-column-header-0"
 			>
@@ -250,8 +250,8 @@
 							</div>
 						</div>
 						<div class="relative rounded-lg bg-gray-100 p-3">
-							<h6 class="mb-2 text-base font-medium leading-none text-gray-900">Бренд</h6>
-							<div class="flex items-center text-gray-500">Apple</div>
+							<h6 class="mb-2 text-base font-medium leading-none text-gray-900">Наименование</h6>
+							<div class="flex items-center text-gray-500">{item.value}</div>
 						</div>
 					</div>
 					<div class="mt-4 flex items-center space-x-3">
