@@ -8,7 +8,7 @@
 </script>
 
 <tr
-	class=" border-t transition hover:bg-gray-100"
+	class="border-t-2 {isVisibleCurrentProduct.value ? ' border-green-200 border-r-2' : ''} transition hover:bg-gray-50"
 	id="table-column-header-0"
 	data-accordion-target="#table-column-body-0"
 	aria-expanded="false"
@@ -33,7 +33,7 @@
 		>
 			<svg
 				data-accordion-icon=""
-				class="h-6 w-6 shrink-0 {isVisibleCurrentProduct.value ? 'rotate-180 text-green-600' : ''}"
+				class="h-6 w-6 shrink-0 {isVisibleCurrentProduct.value ? 'rotate-180 text-red-600' : ''}"
 				fill="currentColor"
 				viewbox="0 0 20 20"
 				aria-hidden="true"
@@ -68,7 +68,7 @@
 </tr>
 {#if isVisibleCurrentProduct.value}
 	<tr
-		class="bg-gray-50 w-full flex-1 overflow-x-auto"
+		class="bg-gray-50/50 border-b-2 border-r-2 border-green-200 w-full flex-1 overflow-x-auto shadow-xl "
 		id="table-column-body-0"
 		aria-labelledby="table-column-header-0"
 	>
