@@ -1,3 +1,3 @@
 export const visibleProductFormUpdate = $state({
-	value: true
+	value: false
 });
