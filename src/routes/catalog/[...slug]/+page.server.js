@@ -1,6 +1,7 @@
 /** @type {import('./$types').PageServerLoad} */
 import { request } from 'graphql-request';
 import { CATALOG, CATEGORY } from './query';
+import { TEST } from './mutations';
 
 export async function load({ params, url }) {
 	const urlCRUD = import.meta.env.VITE_URL;
@@ -29,9 +30,13 @@ export async function load({ params, url }) {
 	}
 }
 
-export async function actions({ params, url }) {
-	const urlCRUD = import.meta.env.VITE_URL;
-	const key = import.meta.env.VITE_KEY;
+// 
 
-	console.log('params', 'test');
-}
+/** @satisfies {import('./$types').Actions} */
+export const actions = {
+	ddd: async () => {
+		console.log('ddd');
+		return { success: true };
+	}
+};
+
