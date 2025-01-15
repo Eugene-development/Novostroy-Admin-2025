@@ -1,14 +1,16 @@
 <script>
 	/** @type {import('./$types').PageData} */
 	// import { isVisibleCurrentProduct } from '$lib/state/visibleCurrentProduct.svelte';
-    const isVisibleCurrentProduct = $state({
-	value: false
-});
+	const isVisibleCurrentProduct = $state({
+		value: false
+	});
 	let { data } = $props();
 </script>
 
 <tr
-	class="border-t-2 {isVisibleCurrentProduct.value ? ' border-green-200 border-r-2' : ''} transition hover:bg-gray-50"
+	class="border-t-2 {isVisibleCurrentProduct.value
+		? ' border-r-2 border-green-200'
+		: ''} transition hover:bg-gray-50"
 	id="table-column-header-0"
 	data-accordion-target="#table-column-body-0"
 	aria-expanded="false"
@@ -68,14 +70,14 @@
 </tr>
 {#if isVisibleCurrentProduct.value}
 	<tr
-		class="bg-gray-50/50 border-b-2 border-r-2 border-green-200 w-full flex-1 overflow-x-auto shadow-xl "
+		class="w-full flex-1 overflow-x-auto border-b-2 border-r-2 border-green-200 bg-gray-50/50 shadow-xl"
 		id="table-column-body-0"
 		aria-labelledby="table-column-header-0"
 	>
 		<td class="border-b p-4" colspan="9">
 			<div class="mb-4 grid grid-cols-4 gap-4">
 				<div
-					class="relative flex h-32 items-center justify-center rounded-lg bg-gray-100 border p-2 sm:h-36 sm:w-full"
+					class="relative flex h-32 items-center justify-center rounded-lg border bg-gray-100 p-2 sm:h-36 sm:w-full"
 				>
 					<img
 						src="https://flowbite.s3.amazonaws.com/blocks/application-ui/products/imac-front-image.png"

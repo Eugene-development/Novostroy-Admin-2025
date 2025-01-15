@@ -68,7 +68,11 @@
 					</div>
 				</div>
 				<div class="flex w-full flex-row items-center justify-end space-x-3">
-					<button onclick={() => visibleProductFormCreate.value = true} type="button" class="bg-primary-700 hover:bg-primary-800 focus:ring-primary-300 flex w-full items-center justify-center rounded-lg px-3 py-2 text-sm font-medium text-gray-800 focus:outline-none focus:ring-4 md:w-auto">
+					<button
+						onclick={() => (visibleProductFormCreate.value = true)}
+						type="button"
+						class="bg-primary-700 hover:bg-primary-800 focus:ring-primary-300 flex w-full items-center justify-center rounded-lg px-3 py-2 text-sm font-medium text-gray-800 focus:outline-none focus:ring-4 md:w-auto"
+					>
 						<svg
 							class="mr-2 h-3.5 w-3.5"
 							fill="currentColor"
