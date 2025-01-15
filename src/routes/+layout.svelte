@@ -1,8 +1,13 @@
 <script>
 	import '../app.css';
+
 	import ProductFormCreate from './layout/modals/ProductFormCreate/index.svelte';
 	import ProductFormUpdate from './layout/modals/ProductFormUpdate/index.svelte';
 	import ProductFormDelete from './layout/modals/ProductFormDelete/index.svelte';
+
+	import { enhance } from '$app/forms';
+
+
 
 	let { children } = $props();
 </script>
@@ -674,8 +679,23 @@
 	</div>
 </div>
 
+
 <!-- Modals -->
 <ProductFormCreate />
 <ProductFormUpdate />
 <ProductFormDelete />
+
+
+<!-- TEST -->
+<form method="POST" action="?/ggg" use:enhance>
+	<label>
+		Email
+		<input name="email" type="email">
+	</label>
+	<label>
+		Password
+		<input name="password" type="password">
+	</label>
+	<button>Log in</button>
+</form>
 

@@ -1,5 +1,7 @@
 <script>
 	import { visibleProductFormCreate } from '$lib/state/productFormCreate.svelte';
+    import { enhance } from '$app/forms';
+
 </script>
 
 {#if visibleProductFormCreate.value}
@@ -38,7 +40,7 @@
 				</button>
 			</div>
 			<!-- Modal body -->
-			<form action="#">
+			<form method="POST" action="?/ggg2" use:enhance>
 				<div class="mb-4 grid gap-4 sm:grid-cols-2">
 					<div>
 						<label
