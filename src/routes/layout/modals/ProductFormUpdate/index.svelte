@@ -2,22 +2,14 @@
     import { visibleProductFormUpdate } from "$lib/state/productFormUpdate.svelte";
 </script>
 
-
 {#if visibleProductFormUpdate.value}
-<!-- Modal toggle -->
-<div class="flex justify-center m-5">
-    <button id="createProductButton" data-modal-target="createProductModal" data-modal-toggle="createProductModal" class="block text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800" type="button">
-    Update product
-    </button>
-</div>
-
-<!-- Main modal -->
-<div id="createProductModal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-modal md:h-full">
-    <div class="relative p-4 w-full max-w-3xl h-full md:h-auto">
+<div class="fixed overflow-y-auto inset-0 z-50  flex items-center justify-center p-4 mt-8" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+    <div class="fixed inset-0 bg-gray-500/75 transition-opacity" aria-hidden="true"></div>
+    <div class="relative w-full max-w-3xl rounded-lg shadow ">
         <!-- Modal content -->
         <div class="relative p-4 bg-white rounded-lg shadow dark:bg-gray-800 sm:p-5">
             <!-- Modal header -->
-            <div class="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 dark:border-gray-600">
+            <div class="flex justify-between items-center pb-4 mb-4 mt-32 rounded-t border-b sm:mb-5 dark:border-gray-600">
                 <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
                     Update Product
                 </h3>
@@ -144,5 +136,4 @@
         </div>
     </div>
 </div>
-
 {/if}
