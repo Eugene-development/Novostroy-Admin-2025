@@ -59,39 +59,12 @@
 							required=""
 						/>
 					</div>
-					<div>
-						<label
-							for="last-name"
-							class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">Last Name</label
-						>
-						<input
-							type="text"
-							name="last-name"
-							id="last-name"
-							class="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400"
-							placeholder="Doe"
-							required=""
-						/>
-					</div>
-					<div>
-						<label for="email" class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
-							>Email</label
-						>
-						<input
-							type="email"
-							name="email"
-							id="email"
-							class="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400"
-							placeholder="name@company.com"
-							required=""
-						/>
-					</div>
-					<div>
+                    <div>
 						<label
 							for="user-permissions"
 							class="mb-2 inline-flex items-center text-sm font-medium text-gray-900 dark:text-white"
 						>
-							User Permissions
+							Категория
 							<button
 								type="button"
 								data-tooltip-target="tooltip-dark"
@@ -130,10 +103,34 @@
 							<option value="NO">Non Operational</option>
 						</select>
 					</div>
+
+					<div>
+						<label
+							for="last-name"
+							class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">Title</label
+						>
+						<input
+							type="text"
+							name="last-name"
+							id="last-name"
+							class="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400"
+						/>
+					</div>
+					<div>
+						<label for="email" class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
+							>Description</label
+						>
+						<input
+							type="email"
+							name="email"
+							id="email"
+							class="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400"
+						/>
+					</div>
 					<div class="sm:col-span-2">
 						<label
-							for="biography"
-							class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">Biography</label
+							for="description"
+							class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">Описание</label
 						>
 						<div
 							class="w-full rounded-lg border border-gray-200 bg-gray-50 dark:border-gray-600 dark:bg-gray-700"
@@ -383,7 +380,7 @@
 					</div>
 					<div class="sm:col-span-2">
 						<label class="mb-2 block text-sm font-medium text-gray-900 dark:text-white" for="role"
-							>Assign Role</label
+							>Теги</label
 						>
 						<div class="space-y-4 sm:flex sm:space-y-0">
 							<div class="mr-4 flex items-center">
@@ -430,7 +427,7 @@
 						</div>
 					</div>
 					<div>
-						<div class="mb-2 text-sm font-medium text-gray-900 dark:text-white">Status</div>
+						<div class="mb-2 text-sm font-medium text-gray-900 dark:text-white">Статус</div>
 						<label for="user-status" class="relative inline-flex cursor-pointer items-center">
 							<input type="checkbox" value="" id="user-status" class="peer sr-only" />
 							<div
@@ -457,14 +454,14 @@
 								clip-rule="evenodd"
 							></path></svg
 						>
-						Add new user
+						Добавить
 					</button>
 					<button
 						onclick={() => (visibleProductFormCreate.value = false)}
 						type="button"
 						class="focus:ring-primary-300 inline-flex w-full items-center justify-center rounded-lg border border-gray-200 bg-white px-5 py-2.5 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-900 focus:z-10 focus:outline-none focus:ring-4 dark:border-gray-500 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white dark:focus:ring-gray-600"
 					>
-						Discard
+						Отменить
 					</button>
 				</div>
 			</form>
