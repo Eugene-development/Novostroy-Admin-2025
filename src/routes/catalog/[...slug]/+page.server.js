@@ -1,6 +1,8 @@
 /** @type {import('./$types').PageServerLoad} */
-import { request } from 'graphql-request';
+import { request, gql, GraphQLClient } from 'graphql-request';
 import { CATEGORY } from '$lib/graphql/queries/catalog/index.js';
+import { CREATE_PRODUCT } from '$lib/graphql/mutations/catalog/index.js';
+import { createSlug } from '$lib/utils/slug.js';
 
 export async function load({ params, url }) {
 	const urlCRUD = import.meta.env.VITE_URL;
@@ -31,9 +33,6 @@ export async function load({ params, url }) {
 
 
 /** @satisfies {import('./$types').Actions} */
-import { request, gql, GraphQLClient } from 'graphql-request';
-import { CREATE_PRODUCT } from '$lib/graphql/mutations/catalog/index.js';
-import { createSlug } from '$lib/utils/slug.js';
 
 const urlCRUD = import.meta.env.VITE_URL;
 const key = import.meta.env.VITE_KEY;
@@ -56,10 +55,11 @@ export const actions = {
 				value: data.get('value'),
 				slug: createSlug(data.get('value')),
 				parentable_type: "category",
-				parentable_uuid: data.get('parentable_uuid'),
+				parentable_uuid: uuid,
+				// parentable_uuid: data.get('category'),
 			};
 
-			console.log(variables);
+			// console.log(variables);
 
 			const result = await graphQLClient.request(CREATE_PRODUCT, variables);
 			return { success: true, data: result };

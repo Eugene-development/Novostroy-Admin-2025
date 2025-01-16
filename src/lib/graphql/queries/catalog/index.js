@@ -40,8 +40,8 @@ export const FULLCATALOG = gql`
 export const FULLCATEGORY = gql`
 	query fullcategory {
 		fullcategory {
+			id
 			value
-			slug
 		}
 	}
 `;
