@@ -43,7 +43,7 @@
 				</button>
 			</div>
 			<!-- Modal body -->
-			<form method="POST" action="?/ggg2" use:enhance>
+			<form method="POST" action="?/addProduct" use:enhance>
 				<div class="mb-4 grid gap-4 sm:grid-cols-2">
 					<div>
 						<label

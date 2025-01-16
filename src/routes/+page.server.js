@@ -13,7 +13,7 @@ const graphQLClient = new GraphQLClient(urlCRUD, {
 });
 
 export const actions = {
-	ggg2: async ({ request }) => {
+	addProduct: async ({ request }) => {
 		const uuid = crypto.randomUUID();
 		const data = await request.formData();
 
@@ -21,11 +21,12 @@ export const actions = {
 			id: uuid,
 			key,
 			value: data.get('value'),
-			slug: createSlug(data.get('value'))
+			slug: createSlug(data.get('value')),
+			parentable_type: "category",
+			parentable_uuid: data.get('parentable_uuid'),
 		};
 
 		console.log(variables);
-
 
 		const req = await graphQLClient.request(TEST, variables);
 
