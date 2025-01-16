@@ -2,13 +2,8 @@
 	import { visibleProductFormCreate } from '$lib/state/productFormCreate.svelte';
     import { enhance } from '$app/forms';
 
-    const variables = {
-			id: "7eb340c2-9795-4d70-a081-aa1a0ec94a84",
-			key: "1eb340c2-9795-4d70-a081-aa1a0ec94a84",
-			value: "тестовое значение7",
-			slug: "etoslu7"
-		};
 
+    let { data, form } = $props();
 
 </script>
 
@@ -52,15 +47,15 @@
 				<div class="mb-4 grid gap-4 sm:grid-cols-2">
 					<div>
 						<label
-							for="first-name"
-							class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">First Name</label
+							for="value"
+							class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">Значение</label
 						>
 						<input
 							type="text"
-							name="first-name"
-							id="first-name"
+							name="value"
+							id="value"
 							class="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400"
-							placeholder="John"
+							placeholder="Значение"
 							required=""
 						/>
 					</div>

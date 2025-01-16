@@ -16,9 +16,20 @@ const graphQLClient = new GraphQLClient(urlCRUD, {
 
 
 export const actions = {
-	ggg2: async () => {
+	ggg2: async ({ request }) => {
 		const uuid = crypto.randomUUID();
-		console.log(uuid);
+
+		const data = await request.formData();
+
+		const var2 = {
+			id: uuid,
+			key,
+			value: data.get('value'),
+			slug: "etoslu45555"
+		};
+
+
+		console.log(var2);
 
 
 
@@ -29,7 +40,7 @@ export const actions = {
 			slug: "etoslu5"
 		};
 
-		const req = await graphQLClient.request(TEST, variables);
+		const req = await graphQLClient.request(TEST, var2);
 
 		// return { success: req };
 	}
