@@ -5,12 +5,6 @@ export const FULLCATALOG = gql`
 		fullcatalog {
 			value
 			slug
-			metaTitle {
-				value
-			}
-			metaDescription {
-				value
-			}
 			rubric {
 				value
 				slug
@@ -39,12 +33,15 @@ export const FULLCATALOG = gql`
 					}
 				}
 			}
-			text {
-				value
-			}
-			image {
-				hash
-			}
+		}
+	}
+`;
+
+export const FULLCATEGORY = gql`
+	query fullcategory {
+		fullcategory {
+			value
+			slug
 		}
 	}
 `;
