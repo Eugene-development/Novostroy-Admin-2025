@@ -55,7 +55,7 @@ export const actions = {
 				value: data.get('value'),
 				slug: createSlug(data.get('value')),
 				parentable_type: "category",
-				parentable_id: uuid,
+				parentable_id: data.get('category_uuid'),
 				// parentable_uuid: data.get('category'),
 			};
 
