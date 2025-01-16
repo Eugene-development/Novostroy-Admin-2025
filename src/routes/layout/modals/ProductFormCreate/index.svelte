@@ -2,9 +2,27 @@
 	import { visibleProductFormCreate } from '$lib/state/productFormCreate.svelte';
     import { enhance } from '$app/forms';
 
+    let formMessage = '';
+    let formError = false;
 
-    // let { data, form } = $props();
-
+    const handleSubmit = () => {
+        return async ({ result }) => {
+            if (result.type === 'success') {
+                if (result.data.success) {
+                    formMessage = 'Продукт успешно создан';
+                    formError = false;
+                    // Закрываем модальное окно после успешного создания
+                    setTimeout(() => {
+                        visibleProductFormCreate.value = false;
+                        formMessage = '';
+                    }, 2000);
+                } else {
+                    formMessage = `Ошибка: ${result.data.error}`;
+                    formError = true;
+                }
+            }
+        };
+    };
 </script>
 
 {#if visibleProductFormCreate.value}
@@ -43,7 +61,16 @@
 				</button>
 			</div>
 			<!-- Modal body -->
-			<form method="POST" action="?/addProduct" use:enhance>
+			<form 
+                method="POST" 
+                action="?/addProduct" 
+                use:enhance={handleSubmit}
+            >
+                {#if formMessage}
+                    <div class="mb-4 p-4 rounded-lg {formError ? 'bg-red-100 text-red-700' : 'bg-green-100 text-green-700'}">
+                        {formMessage}
+                    </div>
+                {/if}
 				<div class="mb-4 grid gap-4 sm:grid-cols-2">
 					<div>
 						<label
@@ -246,43 +273,7 @@
 												xmlns="http://www.w3.org/2000/svg"
 												><path
 													fill-rule="evenodd"
-													d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
-													clip-rule="evenodd"
-												></path></svg
-											>
-											<span class="sr-only">Add list</span>
-										</button>
-										<button
-											type="button"
-											class="cursor-pointer rounded p-2 text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white"
-										>
-											<svg
-												aria-hidden="true"
-												class="h-5 w-5"
-												fill="currentColor"
-												viewBox="0 0 20 20"
-												xmlns="http://www.w3.org/2000/svg"
-												><path
-													fill-rule="evenodd"
-													d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z"
-													clip-rule="evenodd"
-												></path></svg
-											>
-											<span class="sr-only">Settings</span>
-										</button>
-										<button
-											type="button"
-											class="cursor-pointer rounded p-2 text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white"
-										>
-											<svg
-												aria-hidden="true"
-												class="h-5 w-5"
-												fill="currentColor"
-												viewBox="0 0 20 20"
-												xmlns="http://www.w3.org/2000/svg"
-												><path
-													fill-rule="evenodd"
-													d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
+													d="M3 4a1 1 0 011-1h4a1 1 0 010 2H6.414l2.293 2.293a1 1 0 11-1.414 1.414L5 6.414V8a1 1 0 01-2 0V4zm9 1a1 1 0 010-2h4a1 1 0 011 1v4a1 1 0 01-2 0V6.414l-2.293 2.293a1 1 0 11-1.414-1.414L13.586 5H12zm-9 7a1 1 0 012 0v1.586l2.293-2.293a1 1 0 111.414 1.414L6.414 15H8a1 1 0 010 2H4a1 1 0 01-1-1v-4zm13-1a1 1 0 011 1v4a1 1 0 01-1 1h-4a1 1 0 010-2h1.586l-2.293-2.293a1 1 0 111.414-1.414L15 13.586V12a1 1 0 011-1z"
 													clip-rule="evenodd"
 												></path></svg
 											>
