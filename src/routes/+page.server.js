@@ -17,12 +17,15 @@ const graphQLClient = new GraphQLClient(urlCRUD, {
 
 export const actions = {
 	ggg2: async () => {
+		const uuid = crypto.randomUUID();
+		console.log(uuid);
+
 
 
 		const variables = {
-			id: "6eb340c2-9795-4d70-a081-aa1a0ec94a84",
+			id: uuid,
 			key: "1eb340c2-9795-4d70-a081-aa1a0ec94a84",
-			value: "тестовое значение5",
+			value: "dfdfdfdfdfdfdf",
 			slug: "etoslu5"
 		};
 

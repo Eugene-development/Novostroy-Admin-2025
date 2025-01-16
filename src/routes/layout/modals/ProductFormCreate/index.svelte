@@ -2,6 +2,14 @@
 	import { visibleProductFormCreate } from '$lib/state/productFormCreate.svelte';
     import { enhance } from '$app/forms';
 
+    const variables = {
+			id: "7eb340c2-9795-4d70-a081-aa1a0ec94a84",
+			key: "1eb340c2-9795-4d70-a081-aa1a0ec94a84",
+			value: "тестовое значение7",
+			slug: "etoslu7"
+		};
+
+
 </script>
 
 {#if visibleProductFormCreate.value}
