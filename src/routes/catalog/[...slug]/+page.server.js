@@ -1,7 +1,6 @@
 /** @type {import('./$types').PageServerLoad} */
 import { request } from 'graphql-request';
 import { CATEGORY } from '$lib/graphql/queries/catalog/index.js';
-import { TEST } from '$lib/graphql/mutations/catalog/index.js';
 
 export async function load({ params, url }) {
 	const urlCRUD = import.meta.env.VITE_URL;
@@ -29,14 +28,3 @@ export async function load({ params, url }) {
 		console.log(error);
 	}
 }
-
-// 
-
-/** @satisfies {import('./$types').Actions} */
-export const actions = {
-	ddd: async () => {
-		console.log('ddd');
-		return { success: true };
-	}
-};
-

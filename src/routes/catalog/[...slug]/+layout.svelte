@@ -2,9 +2,6 @@
 	/** @type {{ data: import('./$types').LayoutData, children: import('svelte').Snippet }} */
 	import { visibleProductFormCreate } from '$lib/state/productFormCreate.svelte';
 
-	import { enhance } from '$app/forms';
-
-
 	let { children, data } = $props();
 
 	let currentSubCatalogIndex = $state(null);
@@ -432,16 +429,3 @@
 	</div>
 </section>
 
-
-<!-- TEST -->
-<form method="POST" action="?/ddd" use:enhance>
-	<label>
-		Email
-		<input name="email" type="email">
-	</label>
-	<label>
-		Password
-		<input name="password" type="password">
-	</label>
-	<button>Log in</button>
-</form>
