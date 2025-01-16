@@ -345,8 +345,7 @@
 									id="biography"
 									rows="4"
 									class="block w-full border-0 bg-white px-0 text-sm text-gray-800 focus:ring-0 dark:bg-gray-800 dark:text-white dark:placeholder-gray-400"
-									placeholder="Write a message here"
-									required=""
+									placeholder="Краткое описание"
 								></textarea>
 							</div>
 						</div>
