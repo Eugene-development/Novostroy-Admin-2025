@@ -7,8 +7,7 @@ export const CREATE_PRODUCT = gql`
 			key
 			value
 			slug
-      # parentable_type
-      # parentable_id
+      # parentable
 		}
 	}
 `;

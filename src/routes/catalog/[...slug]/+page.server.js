@@ -56,12 +56,10 @@ export const actions = {
 				slug: createSlug(data.get('value')),
 				parentable_type: "category",
 				parentable_id: data.get('category_uuid'),
-				// parentable_uuid: data.get('category'),
 			};
 
-			// console.log(variables);
-
 			const result = await graphQLClient.request(CREATE_PRODUCT, variables);
+
 			return { success: true, data: result };
 		} catch (error) {
 			console.error('Error creating product:', error);
