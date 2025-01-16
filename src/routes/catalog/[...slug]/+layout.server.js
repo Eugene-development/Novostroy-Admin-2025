@@ -1,6 +1,6 @@
 /** @type {import('./$types').PageServerLoad} */
 import { request } from 'graphql-request';
-import {FULLCATEGORY, FULLCATALOG } from '$lib/graphql/queries/catalog/index.js';
+import { FULLCATEGORY, FULLCATALOG } from '$lib/graphql/queries/catalog/index.js';
 
 export async function load({ params, url }) {
 	const urlCRUD = import.meta.env.VITE_URL;

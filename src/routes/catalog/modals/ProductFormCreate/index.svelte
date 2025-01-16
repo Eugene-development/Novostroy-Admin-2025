@@ -1,33 +1,32 @@
 <script>
 	import { visibleProductFormCreate } from '$lib/state/productFormCreate.svelte';
-    import { enhance } from '$app/forms';
+	import { enhance } from '$app/forms';
 
-    let formMessage = $state('');
-    let formError = $state(false);
+	let formMessage = $state('');
+	let formError = $state(false);
 
-    const handleSubmit = () => {
-        return async ({ result }) => {
-            if (result.type === 'success') {
-                if (result.data.success) {
-                    formMessage = 'Продукт успешно создан';
-                    formError = false;
-                    // Закрываем модальное окно после успешного создания
-                    setTimeout(() => {
-                        visibleProductFormCreate.value = false;
-                        formMessage = '';
-                    }, 2000);
-                } else {
-                    formMessage = `Ошибка: ${result.data.error}`;
-                    formError = true;
-                }
-            }
-        };
-    };
+	const handleSubmit = () => {
+		return async ({ result }) => {
+			if (result.type === 'success') {
+				if (result.data.success) {
+					formMessage = 'Продукт успешно создан';
+					formError = false;
+					// Закрываем модальное окно после успешного создания
+					setTimeout(() => {
+						visibleProductFormCreate.value = false;
+						formMessage = '';
+					}, 2000);
+				} else {
+					formMessage = `Ошибка: ${result.data.error}`;
+					formError = true;
+				}
+			}
+		};
+	};
 
 	let { data } = $props();
 
 	// $inspect('data', data);
-
 </script>
 
 {#if visibleProductFormCreate.value}
@@ -66,21 +65,20 @@
 				</button>
 			</div>
 			<!-- Modal body -->
-			<form 
-                method="POST" 
-                action="?/addProduct" 
-                use:enhance={handleSubmit}
-            >
-                {#if formMessage}
-                    <div class="mb-4 p-4 rounded-lg {formError ? 'bg-red-100 text-red-700' : 'bg-green-100 text-green-700'}">
-                        {formMessage}
-                    </div>
-                {/if}
+			<form method="POST" action="?/addProduct" use:enhance={handleSubmit}>
+				{#if formMessage}
+					<div
+						class="mb-4 rounded-lg p-4 {formError
+							? 'bg-red-100 text-red-700'
+							: 'bg-green-100 text-green-700'}"
+					>
+						{formMessage}
+					</div>
+				{/if}
 				<div class="mb-4 grid gap-4 sm:grid-cols-2">
 					<div>
-						<label
-							for="value"
-							class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">Значение</label
+						<label for="value" class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
+							>Значение</label
 						>
 						<input
 							type="text"
@@ -91,7 +89,7 @@
 							required=""
 						/>
 					</div>
-                    <div>
+					<div>
 						<label
 							for="user-permissions"
 							class="mb-2 inline-flex items-center text-sm font-medium text-gray-900 dark:text-white"
@@ -127,13 +125,14 @@
 								<div class="tooltip-arrow" data-popper-arrow></div>
 							</div>
 						</label>
-						<select name="category_uuid"
+						<select
+							name="category_uuid"
 							id="user-permissions"
 							class="focus:ring-primary-500 focus:border-primary-500 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400"
 						>
-						{#each data.dataCategory.fullcategory as category}
-							<option value={category.id} >{category.value}</option>
-						{/each}
+							{#each data as category}
+								<option value={category.id}>{category.value}</option>
+							{/each}
 						</select>
 					</div>
 

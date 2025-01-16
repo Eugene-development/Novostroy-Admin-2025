@@ -31,7 +31,6 @@ export async function load({ params, url }) {
 	}
 }
 
-
 /** @satisfies {import('./$types').Actions} */
 
 const urlCRUD = import.meta.env.VITE_URL;
@@ -39,8 +38,8 @@ const key = import.meta.env.VITE_KEY;
 
 const graphQLClient = new GraphQLClient(urlCRUD, {
 	headers: {
-		Authorization: `Bearer ${key}`,
-	},
+		Authorization: `Bearer ${key}`
+	}
 });
 
 export const actions = {
@@ -54,8 +53,8 @@ export const actions = {
 				key,
 				value: data.get('value'),
 				slug: createSlug(data.get('value')),
-				parentable_type: "category",
-				parentable_id: data.get('category_uuid'),
+				parentable_type: 'category',
+				parentable_id: data.get('category_uuid')
 			};
 
 			const result = await graphQLClient.request(CREATE_PRODUCT, variables);
@@ -67,4 +66,3 @@ export const actions = {
 		}
 	}
 };
-

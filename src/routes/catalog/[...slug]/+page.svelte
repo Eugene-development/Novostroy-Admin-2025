@@ -6,7 +6,7 @@
 	import ProductFormDelete from '../modals/ProductFormDelete/index.svelte';
 
 	let { data } = $props();
-	$inspect('data', data);
+	// $inspect('data', data);
 </script>
 
 <main class="h-full flex-1 overflow-y-auto">
@@ -18,10 +18,6 @@
 </main>
 
 <!-- Modals -->
-<ProductFormCreate data={data} />
-<ProductFormUpdate data={data} />
-<ProductFormDelete data={data} />
-
-
-
-
+<ProductFormCreate data={ data.dataCategory.fullcategory } />
+<ProductFormUpdate {data} />
+<ProductFormDelete {data} />
