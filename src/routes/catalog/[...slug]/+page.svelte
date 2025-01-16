@@ -5,8 +5,6 @@
 	// $inspect('data', data);
 </script>
 
-<!-- <Category /> -->
-
 <main class="h-full flex-1 overflow-y-auto">
 	{#if data.isCategory}
 		<Category data={data.req.category} />
