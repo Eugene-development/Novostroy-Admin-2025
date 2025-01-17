@@ -2,14 +2,64 @@
 	import { visibleProductFormCreate } from '$lib/state/productFormCreate.svelte';
 	import { enhance } from '$app/forms';
 	import ImageCropper from '../ImageCropper/index.svelte';
+	import axios from 'axios';
+
 	let croppedImage = $state(null);
 	let cropperRef;
 	let imageUrl = $state("");
-  
-	function handleCrop() {
-	  if (cropperRef) {
-	    croppedImage = cropperRef.getCroppedImage();
-	  }
+
+
+
+	let uploadStatus = $state({ loading: false, error: null, success: false });
+
+	async function uploadImage(base64Image) {
+		uploadStatus.loading = true;
+		uploadStatus.error = null;
+		uploadStatus.success = false;
+
+		try {
+			// Convert base64 to blob
+			const response = await fetch(base64Image);
+			const blob = await response.blob();
+
+			// Create FormData
+			const formData = new FormData();
+			formData.append('image', blob, 'image/*');
+
+			console.log(formData);
+
+			// Upload using axios
+			const result = await axios.post('http://localhost:8001/upload-image', formData, {
+				headers: {
+					'Content-Type': 'multipart/form-data',
+					'Project': 'test'
+				}
+			});
+
+			uploadStatus.success = true;
+			return result.data.imageUrl; // Assuming server returns the uploaded image URL
+		} catch (error) {
+			uploadStatus.error = error.message;
+			console.error('Error uploading image:', error);
+			throw error;
+		} finally {
+			uploadStatus.loading = false;
+		}
+	}
+
+	async function handleCrop() {
+		if (cropperRef) {
+			croppedImage = cropperRef.getCroppedImage();
+			if (croppedImage) {
+				try {
+					const uploadedImageUrl = await uploadImage(croppedImage);
+					// Here you can use the uploadedImageUrl as needed
+					// For example, save it to a form field or state variable
+				} catch (error) {
+					// Handle error (already logged in uploadImage)
+				}
+			}
+		}
 	}
 
 	function handleFileUpload(event) {
@@ -318,7 +368,7 @@
 									<div class="hidden flex-wrap items-center space-x-1 sm:flex sm:pl-4">
 										<button
 											type="button"
-											class="cursor-pointer rounded p-2 text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white"
+											class="cursor-pointer rounded p-2 text-gray-500 hover:bg-gray-100 hover:text-gray-900 sm:ml-auto dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white"
 										>
 											<svg
 												aria-hidden="true"
@@ -336,7 +386,7 @@
 										</button>
 										<button
 											type="button"
-											class="cursor-pointer rounded p-2 text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white"
+											class="cursor-pointer rounded p-2 text-gray-500 hover:bg-gray-100 hover:text-gray-900 sm:ml-auto dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white"
 										>
 											<svg
 												aria-hidden="true"
@@ -401,11 +451,29 @@
 
 					<ImageCropper bind:this={cropperRef} {imageUrl} />
   
-					<button onclick={handleCrop}>Обрезать</button>
-					
+					<button onclick={handleCrop} class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded {uploadStatus.loading ? 'opacity-50 cursor-not-allowed' : ''}" disabled={uploadStatus.loading}>
+						{#if uploadStatus.loading}
+							Загрузка...
+						{:else}
+							Обрезать и загрузить
+						{/if}
+					</button>
+
+					{#if uploadStatus.error}
+						<div class="mt-2 text-red-500">
+							Ошибка загрузки: {uploadStatus.error}
+						</div>
+					{/if}
+
+					{#if uploadStatus.success}
+						<div class="mt-2 text-green-500">
+							Изображение успешно загружено!
+						</div>
+					{/if}
+
 					{#if croppedImage}
-					  <h3>Результат:</h3>
-					  <img src={croppedImage} alt="Cropped Image222" />
+						<h3>Результат:</h3>
+						<img src={croppedImage} alt="Cropped Image" class="mt-2 max-w-xs" />
 					{/if}
 				  
 					<div class="sm:col-span-2">
