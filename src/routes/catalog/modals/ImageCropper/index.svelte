@@ -2,8 +2,10 @@
     import { onMount } from 'svelte';
     import Cropper from 'cropperjs';
     import 'cropperjs/dist/cropper.css';
-  
-    let imageUrl; // Путь к изображению
+
+	let { imageUrl } = $props();
+	// $inspect('data', data);
+
     let imageElement;
     let cropper;
   
