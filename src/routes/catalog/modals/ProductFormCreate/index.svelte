@@ -1,6 +1,14 @@
 <script>
 	import { visibleProductFormCreate } from '$lib/state/productFormCreate.svelte';
 	import { enhance } from '$app/forms';
+	import ImageCropper from '../ImageCropper/index.svelte';
+	let croppedImage = $state(null);
+	let cropperRef;
+  
+	function handleCrop() {
+	  croppedImage = cropperRef.getCroppedImage();
+	}
+
 
 	let formMessage = $state('');
 	let formError = $state(false);
@@ -192,6 +200,9 @@
 											>
 											<span class="sr-only">Attach file</span>
 										</button>
+
+										  
+
 										<button
 											type="button"
 											class="cursor-pointer rounded p-2 text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white"
@@ -346,6 +357,18 @@
 							</div>
 						</div>
 					</div>
+
+
+
+					<ImageCropper bind:this={cropperRef} imageUrl="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" />
+  
+					<button onclick={handleCrop}>Обрезать</button>
+					
+					{#if croppedImage}
+					  <h3>Результат:</h3>
+					  <img src={croppedImage} alt="Cropped Image" />
+					{/if}
+				  
 					<div class="sm:col-span-2">
 						<label
 							class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"

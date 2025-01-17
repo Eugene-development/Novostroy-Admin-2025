@@ -7,6 +7,16 @@
 
 	let { data } = $props();
 	// $inspect('data', data);
+
+
+
+	// import ImageCropper from "../modals/ImageCropper/index.svelte";
+	// let croppedImage = $state(null);
+	// let cropperRef;
+  
+	// function handleCrop() {
+	//   croppedImage = cropperRef.getCroppedImage();
+	// }
 </script>
 
 <main class="h-full flex-1 overflow-y-auto">
@@ -21,3 +31,16 @@
 <ProductFormCreate data={ data.dataCategory.fullcategory } />
 <ProductFormUpdate {data} />
 <ProductFormDelete {data} />
+
+
+
+
+  
+  <!-- <ImageCropper bind:this={cropperRef} imageUrl="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" />
+  
+  <button onclick={handleCrop}>Обрезать</button>
+  
+  {#if croppedImage}
+	<h3>Результат:</h3>
+	<img src={croppedImage} alt="Cropped Image" />
+  {/if} -->
