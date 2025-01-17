@@ -39,13 +39,13 @@
 
 {#if visibleProductFormCreate.value}
 	<div
-		class="fixed inset-0 z-50 flex items-center justify-center p-4"
+		class="fixed inset-0 z-50 flex items-center overflow-y-auto justify-center p-4"
 		aria-labelledby="modal-title"
 		role="dialog"
 		aria-modal="true"
 	>
 		<div class="fixed inset-0 bg-gray-500/75 transition-opacity" aria-hidden="true"></div>
-		<div class="relative w-full max-w-3xl rounded-lg bg-white shadow sm:p-5 dark:bg-gray-800">
+		<div class="relative w-full max-w-5xl rounded-lg bg-white shadow sm:p-5 dark:bg-gray-800">
 			<!-- Modal header -->
 			<div
 				class="mb-4 flex items-center justify-between rounded-t border-b pb-4 sm:mb-5 dark:border-gray-600"
