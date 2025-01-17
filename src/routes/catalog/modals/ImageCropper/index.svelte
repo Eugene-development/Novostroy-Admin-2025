@@ -3,24 +3,36 @@
     import Cropper from 'cropperjs';
     import 'cropperjs/dist/cropper.css';
   
-    export let imageUrl; // Путь к изображению
+    let imageUrl; // Путь к изображению
     let imageElement;
     let cropper;
   
-    onMount(() => {
-      cropper = new Cropper(imageElement, {
-        aspectRatio: 1, // Пример с квадратным соотношением сторон
-        viewMode: 1,
-        autoCropArea: 0.8,
-      });
+    $effect(() => {
+        if (imageElement && imageUrl) {
+            if (cropper) {
+                cropper.destroy();
+            }
+            cropper = new Cropper(imageElement, {
+                aspectRatio: 1, // Пример с квадратным соотношением сторон
+                viewMode: 1,
+                autoCropArea: 0.8,
+            });
+        }
+    });
   
-      return () => {
-        cropper.destroy();
-      };
+    onMount(() => {
+        return () => {
+            if (cropper) {
+                cropper.destroy();
+            }
+        };
     });
   
     export function getCroppedImage() {
-      return cropper.getCroppedCanvas().toDataURL(); // Возвращает данные Base64
+        if (cropper) {
+            return cropper.getCroppedCanvas().toDataURL(); // Возвращает данные Base64
+        }
+        return null;
     }
   </script>
   

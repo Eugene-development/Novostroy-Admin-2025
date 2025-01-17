@@ -4,9 +4,28 @@
 	import ImageCropper from '../ImageCropper/index.svelte';
 	let croppedImage = $state(null);
 	let cropperRef;
+	let imageUrl = $state("");
   
 	function handleCrop() {
-	  croppedImage = cropperRef.getCroppedImage();
+	  if (cropperRef) {
+	    croppedImage = cropperRef.getCroppedImage();
+	  }
+	}
+
+	function handleFileUpload(event) {
+		event.preventDefault();
+		const file = event.target.files[0];
+
+
+
+		if (file) {
+			const reader = new FileReader();
+			reader.onload = (e) => {
+				imageUrl = e.target.result;
+				console.log(imageUrl);
+			};
+			reader.readAsDataURL(file);
+		}
 	}
 
 
@@ -37,7 +56,7 @@
 	// $inspect('data', data);
 </script>
 
-{#if visibleProductFormCreate.value}
+{#if true}
 
 
 <div class="relative mt-8 z-50" aria-labelledby="modal-title" role="dialog" aria-modal="true">
@@ -380,13 +399,13 @@
 
 
 
-					<ImageCropper bind:this={cropperRef} imageUrl="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" />
+					<ImageCropper bind:this={cropperRef} {imageUrl} />
   
 					<button onclick={handleCrop}>Обрезать</button>
 					
 					{#if croppedImage}
 					  <h3>Результат:</h3>
-					  <img src={croppedImage} alt="Cropped Image" />
+					  <img src={croppedImage} alt="Cropped Image222" />
 					{/if}
 				  
 					<div class="sm:col-span-2">
@@ -406,6 +425,8 @@
 									aria-describedby="file_input_help"
 									id="file_input"
 									type="file"
+									accept="image/*"
+									onchange={handleFileUpload}
 								/>
 								<p
 									class="mt-1 text-xs font-normal text-gray-500 dark:text-gray-300"
@@ -508,4 +529,3 @@
 	</div>
   </div>
   {/if}
-
