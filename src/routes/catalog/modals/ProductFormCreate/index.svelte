@@ -5,7 +5,7 @@
 	import axios from 'axios';
 
 	let croppedImage = $state(null);
-	let cropperRef;
+	let cropperRef = $state(null);
 	let imageUrl = $state("");
 
 
@@ -26,13 +26,11 @@
 			const formData = new FormData();
 			formData.append('image', blob, 'image/*');
 
-			console.log(formData);
-
 			// Upload using axios
 			const result = await axios.post('http://localhost:8001/upload-image', formData, {
 				headers: {
 					'Content-Type': 'multipart/form-data',
-					'Project': 'test'
+					'Project': 'Novostroy'
 				}
 			});
 
@@ -65,14 +63,10 @@
 	function handleFileUpload(event) {
 		event.preventDefault();
 		const file = event.target.files[0];
-
-
-
 		if (file) {
 			const reader = new FileReader();
 			reader.onload = (e) => {
 				imageUrl = e.target.result;
-				// console.log(imageUrl);
 			};
 			reader.readAsDataURL(file);
 		}
@@ -103,10 +97,9 @@
 
 	let { data } = $props();
 
-	// $inspect('data', data);
 </script>
 
-{#if true}
+{#if visibleProductFormCreate.value}
 
 
 <div class="relative mt-8 z-50" aria-labelledby="modal-title" role="dialog" aria-modal="true">
@@ -473,7 +466,7 @@
 
 					{#if croppedImage}
 						<h3>Результат:</h3>
-						<img src={croppedImage} alt="Cropped Image" class="mt-2 max-w-xs" />
+						<img src={croppedImage} alt="Обработанное изображение" class="mt-2 max-w-xs" />
 					{/if}
 				  
 					<div class="sm:col-span-2">
