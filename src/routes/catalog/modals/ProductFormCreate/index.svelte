@@ -34,8 +34,11 @@
 				}
 			});
 
+			console.log(result.data);
+
+
 			uploadStatus.success = true;
-			return result.data.imageUrl; // Assuming server returns the uploaded image URL
+			return result.data; // Assuming server returns the uploaded image URL
 		} catch (error) {
 			uploadStatus.error = error.message;
 			console.error('Error uploading image:', error);
