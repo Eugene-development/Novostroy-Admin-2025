@@ -9,7 +9,7 @@
 	let imageUrl = $state("");
 	let currentImages = $state([]);
 
-let visibleFileCropperSection = $state(false);
+	let visibleFileCropperSection = $state(true);
 
 	let uploadStatus = $state({ loading: false, error: null, success: false });
 
@@ -19,15 +19,12 @@ let visibleFileCropperSection = $state(false);
 		uploadStatus.success = false;
 
 		try {
-			// Convert base64 to blob
 			const response = await fetch(base64Image);
 			const blob = await response.blob();
 
-			// Create FormData
 			const formData = new FormData();
 			formData.append('image', blob, 'image/*');
 
-			// Upload using axios
 			const result = await axios.post('http://localhost:8001/upload-image', formData, {
 				headers: {
 					'Content-Type': 'multipart/form-data',
@@ -35,11 +32,11 @@ let visibleFileCropperSection = $state(false);
 				}
 			});
 
-			// console.log(result.data);
-
-
 			uploadStatus.success = true;
-			return result.data; // Assuming server returns the uploaded image URL
+
+			currentImages = [...currentImages, result.data];
+
+			return result.data;
 		} catch (error) {
 			uploadStatus.error = error.message;
 			console.error('Error uploading image:', error);
@@ -48,6 +45,8 @@ let visibleFileCropperSection = $state(false);
 			uploadStatus.loading = false;
 		}
 	}
+	$inspect('currentImages', currentImages);
+
 
 	async function handleCrop() {
 		if (cropperRef) {
@@ -55,14 +54,16 @@ let visibleFileCropperSection = $state(false);
 			if (croppedImage) {
 				try {
 					const uploadedImageUrl = await uploadImage(croppedImage);
-					// $inspect('uploadedImageUrl', uploadedImageUrl);
-					// Here you can use the uploadedImageUrl as needed
-					// For example, save it to a form field or state variable
+					visibleFileCropperSection = true;
 				} catch (error) {
 					// Handle error (already logged in uploadImage)
 				}
 			}
 		}
+	}
+
+	function removeImage(index) {
+		currentImages = currentImages.filter((_, i) => i !== index);
 	}
 
 	function handleFileUpload(event) {
@@ -77,7 +78,6 @@ let visibleFileCropperSection = $state(false);
 			reader.readAsDataURL(file);
 		}
 	}
-
 
 	let formMessage = $state('');
 	let formError = $state(false);
@@ -507,136 +507,38 @@ let visibleFileCropperSection = $state(false);
 						{/if} -->
 						<div class="mb-4 sm:col-span-2">
 							<span class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
-								>Загруженные изображения (не более 4-х)</span
+								>Загруженные изображения (не более 4-х)-${import.meta.env.VITE_S8}/{currentImages[0]}</span
 							>
 							<div class="mb-4 grid grid-cols-2 gap-2 sm:grid-cols-4">
-								<div class="relative rounded-lg bg-gray-100 p-2 sm:h-36 sm:w-36 dark:bg-gray-700">
-									<img
-										src="https://flowbite.s3.amazonaws.com/blocks/application-ui/products/imac-side-image.png"
-										alt="iMac Side Image"
-									/>
-									<button
-										type="button"
-										class="absolute bottom-1 left-1 text-red-600 hover:text-red-500 dark:text-red-500 dark:hover:text-red-400"
-									>
-										<svg
-											aria-hidden="true"
-											class="h-5 w-5"
-											fill="currentColor"
-											viewBox="0 0 20 20"
-											xmlns="http://www.w3.org/2000/svg"
-											><path
-												fill-rule="evenodd"
-												d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
-												clip-rule="evenodd"
-											></path></svg
+								{#each currentImages as image, index}
+									<div class="relative rounded-lg bg-gray-100 p-2 sm:h-36 sm:w-36 dark:bg-gray-700">
+										<img
+											src={`${import.meta.env.VITE_S8}/${image}`}
+											alt="Uploaded image {index + 1}"
+											class="h-full w-full object-cover"
+										/>
+										<button
+											type="button"
+											class="absolute bottom-1 left-1 text-red-600 hover:text-red-500 dark:text-red-500 dark:hover:text-red-400"
+											onclick={() => removeImage(index)}
 										>
-										<span class="sr-only">Delete image</span>
-									</button>
-								</div>
-								<div class="relative rounded-lg bg-gray-100 p-2 sm:h-36 sm:w-36 dark:bg-gray-700">
-									<img
-										src="https://flowbite.s3.amazonaws.com/blocks/application-ui/products/imac-front-image.png"
-										alt="iMac Front Image"
-									/>
-									<button
-										type="button"
-										class="absolute bottom-1 left-1 text-red-600 hover:text-red-500 dark:text-red-500 dark:hover:text-red-400"
-									>
-										<svg
-											aria-hidden="true"
-											class="h-5 w-5"
-											fill="currentColor"
-											viewBox="0 0 20 20"
-											xmlns="http://www.w3.org/2000/svg"
-											><path
-												fill-rule="evenodd"
-												d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
-												clip-rule="evenodd"
-											></path></svg
-										>
-										<span class="sr-only">Delete image</span>
-									</button>
-								</div>
-								<div class="relative rounded-lg bg-gray-100 p-2 sm:h-36 sm:w-36 dark:bg-gray-700">
-									<img
-										src="https://flowbite.s3.amazonaws.com/blocks/application-ui/products/imac-back-image.png"
-										alt="iMac Back Image"
-									/>
-									<button
-										type="button"
-										class="absolute bottom-1 left-1 text-red-600 hover:text-red-500 dark:text-red-500 dark:hover:text-red-400"
-									>
-										<svg
-											aria-hidden="true"
-											class="h-5 w-5"
-											fill="currentColor"
-											viewBox="0 0 20 20"
-											xmlns="http://www.w3.org/2000/svg"
-											><path
-												fill-rule="evenodd"
-												d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
-												clip-rule="evenodd"
-											></path></svg
-										>
-										<span class="sr-only">Delete image</span>
-									</button>
-								</div>
-								<div class="relative rounded-lg bg-gray-100 p-2 sm:h-36 sm:w-36 dark:bg-gray-700">
-									<img
-										src="https://flowbite.s3.amazonaws.com/blocks/application-ui/products/imac-back-image.png"
-										alt="iMac Back Image"
-									/>
-									<button
-										type="button"
-										class="absolute bottom-1 left-1 text-red-600 hover:text-red-500 dark:text-red-500 dark:hover:text-red-400"
-									>
-										<svg
-											aria-hidden="true"
-											class="h-5 w-5"
-											fill="currentColor"
-											viewBox="0 0 20 20"
-											xmlns="http://www.w3.org/2000/svg"
-											><path
-												fill-rule="evenodd"
-												d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
-												clip-rule="evenodd"
-											></path></svg
-										>
-										<span class="sr-only">Delete image</span>
-									</button>
-								</div>
-							</div>
-							<!-- <div class="flex w-full items-center justify-center">
-								<label
-									for="dropzone-file"
-									class="dark:hover:bg-bray-800 flex h-64 w-full cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed border-gray-300 bg-gray-50 hover:bg-gray-100 dark:border-gray-600 dark:bg-gray-700 dark:hover:border-gray-500 dark:hover:bg-gray-600"
-								>
-									<div class="flex flex-col items-center justify-center pb-6 pt-5">
-										<svg
-											aria-hidden="true"
-											class="mb-3 h-10 w-10 text-gray-400"
-											fill="none"
-											stroke="currentColor"
-											viewBox="0 0 24 24"
-											xmlns="http://www.w3.org/2000/svg"
-											><path
-												stroke-linecap="round"
-												stroke-linejoin="round"
-												stroke-width="2"
-												d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
-											></path></svg
-										>
-										<p class="mb-2 text-sm text-gray-500 dark:text-gray-400">
-											<span class="font-semibold">Click to upload</span> or drag and drop
-										</p>
-										<p class="text-xs text-gray-500 dark:text-gray-400">
-											SVG, PNG, JPG or GIF (MAX. 800x400px)
-										</p>
+											<svg
+												aria-hidden="true"
+												class="h-5 w-5"
+												fill="currentColor"
+												viewBox="0 0 20 20"
+												xmlns="http://www.w3.org/2000/svg"
+												><path
+													fill-rule="evenodd"
+													d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
+													clip-rule="evenodd"
+												></path></svg
+											>
+											<span class="sr-only">Удалить изображение</span>
+										</button>
 									</div>
-									<input id="dropzone-file" type="file" class="hidden" />
-								</label>
-							</div> -->
+								{/each}
+							</div>
 						</div>
 					{/if}
 						
