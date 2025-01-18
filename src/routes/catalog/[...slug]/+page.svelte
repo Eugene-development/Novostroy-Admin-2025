@@ -23,7 +23,7 @@
 	{#if data.isCategory}
 		<Category data={data.req.category} />
 	{:else}
-		<p>12345</p>
+		<div>12345</div>
 	{/if}
 </main>
 

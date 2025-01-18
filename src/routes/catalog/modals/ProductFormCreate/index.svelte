@@ -45,7 +45,7 @@
 			uploadStatus.loading = false;
 		}
 	}
-	$inspect('currentImages', currentImages);
+	// $inspect('currentImages', currentImages);
 
 
 	async function handleCrop() {
@@ -511,7 +511,7 @@
 							>
 							<div class="mb-4 grid grid-cols-2 gap-2 sm:grid-cols-4">
 								{#each currentImages as image, index}
-									<div class="relative rounded-lg bg-gray-100 p-2 sm:h-36 sm:w-36 dark:bg-gray-700">
+									<div class="relative rounded-lg bg-gray-100 p-2 dark:bg-gray-700">
 										<img
 											src={`${import.meta.env.VITE_S8}/${image}`}
 											alt="Uploaded image {index + 1}"
@@ -519,7 +519,7 @@
 										/>
 										<button
 											type="button"
-											class="absolute bottom-1 left-1 text-red-600 hover:text-red-500 dark:text-red-500 dark:hover:text-red-400"
+											class="absolute bottom-4 right-4 text-red-600 hover:text-red-500 dark:text-red-500 dark:hover:text-red-400"
 											onclick={() => removeImage(index)}
 										>
 											<svg
