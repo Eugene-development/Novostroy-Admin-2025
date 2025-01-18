@@ -7,6 +7,7 @@
 	let croppedImage = $state(null);
 	let cropperRef = $state(null);
 	let imageUrl = $state("");
+	let currentImages = $state([]);
 
 let visibleFileCropperSection = $state(false);
 
@@ -34,7 +35,7 @@ let visibleFileCropperSection = $state(false);
 				}
 			});
 
-			console.log(result.data);
+			// console.log(result.data);
 
 
 			uploadStatus.success = true;
@@ -54,6 +55,7 @@ let visibleFileCropperSection = $state(false);
 			if (croppedImage) {
 				try {
 					const uploadedImageUrl = await uploadImage(croppedImage);
+					// $inspect('uploadedImageUrl', uploadedImageUrl);
 					// Here you can use the uploadedImageUrl as needed
 					// For example, save it to a form field or state variable
 				} catch (error) {
