@@ -507,6 +507,11 @@
 							<img src={croppedImage} alt="Обработанное изображение" class="mt-2 max-w-xs" />
 						{/if} -->
 						<div class="mb-4 sm:col-span-2">
+							<input 
+								type="hidden" 
+								name="currentImages" 
+								value={JSON.stringify(currentImages)} 
+							/>
 							<span class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
 								>Загруженные изображения (не более 4-х)</span
 							>

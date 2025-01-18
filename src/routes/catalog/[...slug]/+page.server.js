@@ -54,8 +54,12 @@ export const actions = {
 				value: data.get('value'),
 				slug: createSlug(data.get('value')),
 				parentable_type: 'category',
-				parentable_id: data.get('category_uuid')
+				parentable_id: data.get('category_uuid'),
+				images: JSON.parse(data.get('currentImages'))  // currentImages
+
 			};
+
+			console.log(variables);
 
 			const result = await graphQLClient.request(CREATE_PRODUCT, variables);
 
