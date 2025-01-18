@@ -6,7 +6,7 @@
 
 	let croppedImage = $state(null);
 	let cropperRef = $state(null);
-	let imageUrl = $state("");
+	let imageUrl = $state("https://www.pngitem.com/pimgs/m/33-330111_album-icon-png-transparent-png.png");
 
 
 
@@ -468,21 +468,21 @@
 					{/if}
 
 					{#if croppedImage}
-						<h3>Результат:</h3>
+						<!-- <h3>Результат:</h3> -->
 						<img src={croppedImage} alt="Обработанное изображение" class="mt-2 max-w-xs" />
 					{/if}
 				  
 					<div class="sm:col-span-2">
 						<label
 							class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
-							for="file_input">Upload avatar</label
+							for="file_input">Загрузите изображение</label
 						>
 						<div class="w-full items-center sm:flex">
-							<img
+							<!-- <img
 								class="mb-4 h-20 w-20 rounded-full sm:mb-0 sm:mr-4"
 								src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/helene-engels.png"
 								alt="Helene avatar"
-							/>
+							/> -->
 							<div class="w-full">
 								<input
 									class="w-full cursor-pointer rounded-lg border border-gray-300 bg-gray-50 text-sm text-gray-900 focus:outline-none dark:border-gray-600 dark:bg-gray-700 dark:text-gray-400 dark:placeholder-gray-400"
