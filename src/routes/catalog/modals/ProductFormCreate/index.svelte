@@ -9,7 +9,7 @@
 	let imageUrl = $state("");
 	let currentImages = $state([]);
 
-	let visibleFileCropperSection = $state(true);
+	let visibleFileCropperSection = $state(false);
 
 	let uploadStatus = $state({ loading: false, error: null, success: false });
 
@@ -68,9 +68,10 @@
 
 	function handleFileUpload(event) {
 		event.preventDefault();
+		visibleFileCropperSection = true;
+
 		const file = event.target.files[0];
 		if (file) {
-			visibleFileCropperSection = true;
 			const reader = new FileReader();
 			reader.onload = (e) => {
 				imageUrl = e.target.result;
