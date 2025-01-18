@@ -6,7 +6,7 @@
 
 	let croppedImage = $state(null);
 	let cropperRef = $state(null);
-	let imageUrl = $state("https://www.pngitem.com/pimgs/m/33-330111_album-icon-png-transparent-png.png");
+	let imageUrl = $state("");
 
 let visibleFileCropperSection = $state(false);
 
@@ -500,10 +500,9 @@ let visibleFileCropperSection = $state(false);
 							</div>
 						{/if}
 	
-						{#if croppedImage}
-							<!-- <h3>Результат:</h3> -->
+						<!-- {#if croppedImage}
 							<img src={croppedImage} alt="Обработанное изображение" class="mt-2 max-w-xs" />
-						{/if}
+						{/if} -->
 						<div class="mb-4 sm:col-span-2">
 							<span class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
 								>Загруженные изображения (не более 4-х)</span
