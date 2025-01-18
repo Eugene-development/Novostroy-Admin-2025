@@ -55,8 +55,7 @@ export const actions = {
 				slug: createSlug(data.get('value')),
 				parentable_type: 'category',
 				parentable_id: data.get('category_uuid'),
-				images: JSON.parse(data.get('currentImages'))  // currentImages
-
+				images: JSON.parse(data.get('currentImages')) // Захардкодить для проверки
 			};
 
 			console.log(variables);
