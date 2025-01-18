@@ -37,16 +37,29 @@
     }
 
     $effect(() => {
-        if (imageElement && imageUrl) {
+      if (imageElement && imageUrl) {
+        // Загружаем изображение, чтобы получить его размеры
+        const img = new Image();
+        img.src = imageUrl;
+        img.onload = () => {
             if (cropper) {
                 cropper.destroy();
             }
+            // Проверяем соотношение сторон изображения
+            const isVertical = img.height >= img.width;
+            const aspectRatio = isVertical ? 3 / 4 : 4 / 3;
+
+            // Создаём Cropper с подходящим aspectRatio
             cropper = new Cropper(imageElement, {
-                aspectRatio: 16 / 9,
+                aspectRatio,
                 viewMode: 1,
-                autoCropArea: 0.8,
-            })
-        }
+                autoCropArea: 1.0,
+                dragMode: 'move',
+                cropBoxMovable: true,
+                cropBoxResizable: true
+            });
+        };
+    }
     });
   
     onMount(() => {

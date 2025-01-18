@@ -515,7 +515,7 @@
 										<img
 											src={`${import.meta.env.VITE_S8}/${image}`}
 											alt="Uploaded image {index + 1}"
-											class="h-full w-full object-cover"
+											class="h-full w-full object-contain"
 										/>
 										<button
 											type="button"
