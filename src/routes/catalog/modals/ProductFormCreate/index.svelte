@@ -105,7 +105,7 @@
 {#if visibleProductFormCreate.value}
 
 
-<div class="relative mt-8 z-50" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+<div class="relative  z-50" aria-labelledby="modal-title" role="dialog" aria-modal="true">
 	<!--
 	  Background backdrop, show/hide based on modal state.
   
@@ -118,8 +118,8 @@
 	-->
 	<div class="fixed inset-0 bg-gray-500/75 transition-opacity" aria-hidden="true"></div>
   
-	<div class="fixed inset-0 z-10 w-screen overflow-y-auto">
-	  <div class="flex min-h-full items-end justify-center p-4  sm:items-center sm:p-0">
+	<div class="fixed inset-0 pt-8 z-10 w-screen overflow-y-auto">
+	  <div class="flex min-h-full  items-end justify-center p-4  sm:items-center sm:p-0">
 		<!--
 		  Modal panel, show/hide based on modal state.
   
@@ -447,6 +447,7 @@
 
 					<ImageCropper bind:this={cropperRef} {imageUrl} />
   
+					<!-- Сделай форму внутри формы. Пользуй formaction -->
 					<button onclick={handleCrop} class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded {uploadStatus.loading ? 'opacity-50 cursor-not-allowed' : ''}" disabled={uploadStatus.loading}>
 						{#if uploadStatus.loading}
 							Загрузка...
@@ -496,7 +497,7 @@
 									class="mt-1 text-xs font-normal text-gray-500 dark:text-gray-300"
 									id="file_input_help"
 								>
-									SVG, PNG, JPG or GIF (MAX. 800x400px).
+									SVG, PNG, JPG или GIF.
 								</p>
 							</div>
 						</div>

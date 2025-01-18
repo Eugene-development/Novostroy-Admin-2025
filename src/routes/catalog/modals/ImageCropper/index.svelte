@@ -15,10 +15,10 @@
                 cropper.destroy();
             }
             cropper = new Cropper(imageElement, {
-                aspectRatio: 1, // Пример с квадратным соотношением сторон
+                aspectRatio: 16 / 9, 
                 viewMode: 1,
                 autoCropArea: 0.8,
-            });
+            })
         }
     });
   
@@ -38,17 +38,17 @@
     }
   </script>
   
-  <style>
+  <!-- <style>
     .cropper-container {
       max-width: 100%;
       height: auto;
     }
-  </style>
+  </style> -->
   
   <div>
     <img
       bind:this={imageElement}
-      class="cropper-container"
+      class=" object-contain"
       src={imageUrl}
       alt="Crop"
     />
