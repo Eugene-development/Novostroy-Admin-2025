@@ -507,7 +507,7 @@
 						{/if} -->
 						<div class="mb-4 sm:col-span-2">
 							<span class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
-								>Загруженные изображения (не более 4-х)-${import.meta.env.VITE_S8}/{currentImages[0]}</span
+								>Загруженные изображения (не более 4-х)</span
 							>
 							<div class="mb-4 grid grid-cols-2 gap-2 sm:grid-cols-4">
 								{#each currentImages as image, index}
