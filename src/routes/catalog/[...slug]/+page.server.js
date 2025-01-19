@@ -55,7 +55,7 @@ export const actions = {
 				slug: createSlug(data.get('value')),
 				parentable_type: 'category',
 				parentable_id: data.get('category_uuid'),
-				images: [{key: uuid, hash: "ggg.jpeg"}] // Захардкодить для проверки
+				images: [{ key: uuid, hash: 'ggg.jpeg' }] // Захардкодить для проверки
 				// images: JSON.parse(data.get('currentImages')) // Захардкодить для проверки
 			};
 

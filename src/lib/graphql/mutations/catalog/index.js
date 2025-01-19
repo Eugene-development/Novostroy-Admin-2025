@@ -9,7 +9,7 @@ export const CREATE_PRODUCT = gql`
 		$parentable_type: String
 		$parentable_id: UUID
 		$images_hash: [CreateImageInput!]!
-		) {
+	) {
 		createProduct(
 			input: {
 				id: $id
@@ -25,8 +25,6 @@ export const CREATE_PRODUCT = gql`
 		}
 	}
 `;
-
-
 
 // export const CREATE_PRODUCT = gql`
 // 	mutation create_product(
