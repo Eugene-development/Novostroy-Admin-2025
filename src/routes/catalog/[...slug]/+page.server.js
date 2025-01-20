@@ -48,6 +48,32 @@ export const actions = {
 			const uuid = crypto.randomUUID();
 			const data = await request.formData();
 
+			const imagesHash = JSON.parse(data.get('currentImagesHash'));
+			console.log(imagesHash);
+
+			const images_data = imagesHash.map(obj => ({
+				...obj,
+				id: crypto.randomUUID(),
+				key,
+				alt: data.get('value'),
+				parentable_type: 'product',
+				parentable_id: uuid
+			  }));
+			
+			console.log(images_data);
+
+			// const images_data = [];
+			// for (let i = 0; i < data.getAll('currentImages').length; i++) {
+			// 	images_data.push({
+			// 		id: crypto.randomUUID(),
+			// 		key,
+			// 		hash: data.getAll('imagesOfCurrentProduct')[i],
+			// 		alt: data.get('value'),
+			// 		parentable_type: 'product',
+			// 		parentable_id: uuid
+			// 	});
+			// }
+
 			const variables = {
 				id: uuid,
 				key,
@@ -55,11 +81,11 @@ export const actions = {
 				slug: createSlug(data.get('value')),
 				parentable_type: 'category',
 				parentable_id: data.get('category_uuid'),
-				images: [{ key: uuid, hash: 'ggg.jpeg' }] // Захардкодить для проверки
+				images_data
 				// images: JSON.parse(data.get('currentImages')) // Захардкодить для проверки
 			};
 
-			console.log(variables);
+			// console.log(variables.images_data);
 
 			const result = await graphQLClient.request(CREATE_PRODUCT, variables);
 

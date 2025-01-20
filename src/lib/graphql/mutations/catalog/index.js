@@ -8,7 +8,7 @@ export const CREATE_PRODUCT = gql`
 		$slug: String
 		$parentable_type: String
 		$parentable_id: UUID
-		$images_hash: [CreateImageInput!]!
+		$images_data: [CreateImageInput!]!
 	) {
 		createProduct(
 			input: {
@@ -18,7 +18,7 @@ export const CREATE_PRODUCT = gql`
 				slug: $slug
 				parentable_type: $parentable_type
 				parentable_id: $parentable_id
-				image: { create: $images_hash }
+				image: { create: $images_data }
 			}
 		) {
 			id
