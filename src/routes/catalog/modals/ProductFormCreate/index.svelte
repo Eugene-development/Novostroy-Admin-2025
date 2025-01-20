@@ -3,27 +3,64 @@
 	import { enhance } from '$app/forms';
 	import ImageCropper from '../ImageCropper/index.svelte';
 	import axios from 'axios';
+	
+	let { data } = $props();
 
 	let croppedImage = $state(null);
 	let cropperRef = $state(null);
 	let imageUrl = $state("");
 	let currentImages = $state([]);
-
 	let visibleFileCropperSection = $state(false);
-
 	let uploadStatus = $state({ loading: false, error: null, success: false });
+	let formMessage = $state('');
+	let formError = $state(false);
 
+
+	// Сжатие изображения
+	async function compressImage(base64Image, maxWidth = 1920, quality = 0.8) {
+		return new Promise((resolve) => {
+			const img = new Image();
+			img.src = base64Image;
+			img.onload = () => {
+				const canvas = document.createElement('canvas');
+				const ctx = canvas.getContext('2d');
+
+				// Вычисляем новые размеры, сохраняя пропорции
+				let width = img.width;
+				let height = img.height;
+				
+				if (width > maxWidth) {
+					height = (maxWidth * height) / width;
+					width = maxWidth;
+				}
+
+				canvas.width = width;
+				canvas.height = height;
+
+				// Рисуем изображение с новыми размерами
+				ctx.drawImage(img, 0, 0, width, height);
+
+				// Конвертируем в base64 с указанным качеством
+				resolve(canvas.toDataURL('image/jpeg', quality));
+			};
+		});
+	}
+
+	// Загрузка изображения
 	async function uploadImage(base64Image) {
 		uploadStatus.loading = true;
 		uploadStatus.error = null;
 		uploadStatus.success = false;
 
 		try {
-			const response = await fetch(base64Image);
+			// Сжимаем изображение перед загрузкой
+			const compressedImage = await compressImage(base64Image);
+			
+			const response = await fetch(compressedImage);
 			const blob = await response.blob();
 
 			const formData = new FormData();
-			formData.append('image', blob, 'image/*');
+			formData.append('image', blob, 'image/jpeg');
 
 			const result = await axios.post('http://localhost:8001/upload-image', formData, {
 				headers: {
@@ -33,9 +70,7 @@
 			});
 
 			uploadStatus.success = true;
-
 			currentImages = [...currentImages, { hash: result.data }];
-
 			return result.data;
 		} catch (error) {
 			uploadStatus.error = error.message;
@@ -45,9 +80,8 @@
 			uploadStatus.loading = false;
 		}
 	}
-	// $inspect('currentImages', currentImages);
 
-
+	// Обработка обрезки изображения
 	async function handleCrop() {
 		if (cropperRef) {
 			croppedImage = cropperRef.getCroppedImage();
@@ -62,10 +96,12 @@
 		}
 	}
 
+	// Удаление изображения
 	function removeImage(index) {
 		currentImages = currentImages.filter((_, i) => i !== index);
 	}
 
+	// Загрузка изображения в кроппер
 	function handleFileUpload(event) {
 		event.preventDefault();
 		visibleFileCropperSection = true;
@@ -80,9 +116,7 @@
 		}
 	}
 
-	let formMessage = $state('');
-	let formError = $state(false);
-
+	// Обработчик отправки формы
 	const handleSubmit = () => {
 		return async ({ result }) => {
 			if (result.type === 'success') {
@@ -102,7 +136,6 @@
 		};
 	};
 
-	let { data } = $props();
 
 </script>
 
