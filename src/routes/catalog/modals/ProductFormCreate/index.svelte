@@ -15,6 +15,9 @@
 	let uploadStatus = $state({ loading: false, error: null, success: false });
 	let formMessage = $state('');
 	let formError = $state(false);
+	let checkedTags = $state([]);
+
+	$inspect('checkedTags', checkedTags);
 
 
 	// Сжатие изображения
@@ -593,6 +596,7 @@
 							{#each all_tags as tag, index}
 							<div class="mr-4 flex items-center">
 								<input
+									bind:checked={checkedTags}
 									id="inline-checkbox"
 									type="checkbox"
 									value={tag.id}
