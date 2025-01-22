@@ -17,7 +17,7 @@
 	let formError = $state(false);
 	let checkedTags = $state([]);
 
-	$inspect('checkedTags', checkedTags);
+	// $inspect('checkedTags', checkedTags);
 
 	function handleTagChange(tagId, checked) {
 		if (checked) {
@@ -76,7 +76,7 @@
 			const result = await axios.post('http://localhost:8001/upload-image', formData, {
 				headers: {
 					'Content-Type': 'multipart/form-data',
-					'Project': 'Novostroy'
+					'Project': 'novostroy'
 				}
 			});
 
@@ -563,10 +563,15 @@
 								{#each currentImages as image, index}
 									<div class="relative rounded-lg bg-gray-100 p-2 dark:bg-gray-700">
 										<img
-											src={`${import.meta.env.VITE_S8}/${image.hash}`}
+											src={`${import.meta.env.VITE_S3}/catalog/${image.hash}`}
 											alt="Uploaded image {index + 1}"
 											class="h-full w-full object-contain"
 										/>
+										<!-- <img
+											src={`${import.meta.env.VITE_S8}/${image.hash}`}
+											alt="Uploaded image {index + 1}"
+											class="h-full w-full object-contain"
+										/> -->
 										<button
 											type="button"
 											class="absolute bottom-4 right-4 text-red-600 hover:text-red-500 dark:text-red-500 dark:hover:text-red-400"

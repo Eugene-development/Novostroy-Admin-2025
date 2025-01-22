@@ -78,7 +78,6 @@ export const actions = {
 				// images: JSON.parse(data.get('currentImages')) // Захардкодить для проверки
 			};
 
-			// console.log(variables.images_data);
 
 			const result = await graphQLClient.request(CREATE_PRODUCT, variables);
 
