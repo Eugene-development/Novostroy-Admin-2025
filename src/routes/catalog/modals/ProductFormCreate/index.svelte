@@ -4,7 +4,8 @@
 	import ImageCropper from '../ImageCropper/index.svelte';
 	import axios from 'axios';
 	
-	let { fullcategory } = $props();
+	let { fullcategory, all_tags } = $props();
+	// $inspect('dataTags', all_tags );
 
 	let croppedImage = $state(null);
 	let cropperRef = $state(null);
@@ -588,48 +589,25 @@
 						<label class="mb-2 block text-sm font-medium text-gray-900 dark:text-white" for="role"
 							>Теги</label
 						>
-						<div class="space-y-4 sm:flex sm:space-y-0">
+						<div class="space-y-4 grid gap-4 sm:grid-cols-6 sm:space-y-0">
+							{#each all_tags as tag, index}
 							<div class="mr-4 flex items-center">
 								<input
 									id="inline-checkbox"
 									type="checkbox"
-									value=""
+									value={tag.id}
 									name="role"
-									class="text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 h-4 w-4 rounded border-gray-300 bg-gray-100 focus:ring-2 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800"
+									class="text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 size-4 rounded border-gray-300 bg-gray-100 focus:ring-2 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800"
 								/>
 								<label
 									for="inline-checkbox"
-									class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-									>Administrator</label
+									class="ml-2 text-xs font-medium text-gray-900 dark:text-gray-300"
+									>{tag.value}</label
 								>
 							</div>
-							<div class="mr-4 flex items-center">
-								<input
-									id="inline-2-checkbox"
-									type="checkbox"
-									value=""
-									name="role"
-									class="text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 h-4 w-4 rounded border-gray-300 bg-gray-100 focus:ring-2 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800"
-								/>
-								<label
-									for="inline-2-checkbox"
-									class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Member</label
-								>
-							</div>
-							<div class="mr-4 flex items-center">
-								<input
-									checked=""
-									id="inline-checked-checkbox"
-									type="checkbox"
-									value=""
-									name="role"
-									class="text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 h-4 w-4 rounded border-gray-300 bg-gray-100 focus:ring-2 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800"
-								/>
-								<label
-									for="inline-checked-checkbox"
-									class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Viewer</label
-								>
-							</div>
+								
+							{/each}
+							
 						</div>
 					</div>
 					<div>

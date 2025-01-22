@@ -26,7 +26,7 @@
 </main>
 
 <!-- Modals -->
-<ProductFormCreate fullcategory={data.dataCategory.fullcategory} />
+<ProductFormCreate fullcategory={data.dataCategory.fullcategory} all_tags={data.dataTags.all_tags} />
 <ProductFormUpdate {data} />
 <ProductFormDelete {data} />
 
