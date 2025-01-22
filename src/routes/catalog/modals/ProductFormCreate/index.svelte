@@ -19,6 +19,13 @@
 
 	$inspect('checkedTags', checkedTags);
 
+	function handleTagChange(tagId, checked) {
+		if (checked) {
+			checkedTags = [...checkedTags, tagId];
+		} else {
+			checkedTags = checkedTags.filter(id => id !== tagId);
+		}
+	}
 
 	// Сжатие изображения
 	async function compressImage(base64Image, maxWidth = 1920, quality = 0.8) {
@@ -596,15 +603,15 @@
 							{#each all_tags as tag, index}
 							<div class="mr-4 flex items-center">
 								<input
-									bind:checked={checkedTags}
-									id="inline-checkbox"
 									type="checkbox"
+									id={`tag-${tag.id}`}
 									value={tag.id}
 									name="role"
+									onchange={(e) => handleTagChange(tag.id, e.target.checked)}
 									class="text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 size-4 rounded border-gray-300 bg-gray-100 focus:ring-2 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800"
 								/>
 								<label
-									for="inline-checkbox"
+									for={`tag-${tag.id}`}
 									class="ml-2 text-xs font-medium text-gray-900 dark:text-gray-300"
 									>{tag.value}</label
 								>
