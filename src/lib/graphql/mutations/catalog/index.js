@@ -5,25 +5,27 @@ export const CREATE_PRODUCT = gql`
 		$id: UUID!
 		$key: UUID!
 		$value: String!
-		$slug: String
+		$slug: String!
 		$parentable_type: String
 		$parentable_id: UUID
 		$images_data: [CreateImageInput!]!
-	) {
+		$taggables_data: [CreateTaggableInput!]!
+		) {
 		createProduct(
 			input: {
-				id: $id
-				key: $key
-				value: $value
-				slug: $slug
-				parentable_type: $parentable_type
-				parentable_id: $parentable_id
-				image: { create: $images_data }
+			id: $id
+			key: $key
+			value: $value
+			slug: $slug
+			parentable_type: $parentable_type
+			parentable_id: $parentable_id
+			image: { create: $images_data }
+			taggables: { create: $taggables_data}
 			}
 		) {
 			id
 		}
-	}
+		}
 `;
 
 // export const CREATE_PRODUCT = gql`

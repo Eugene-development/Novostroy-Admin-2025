@@ -60,19 +60,6 @@ export const actions = {
 				parentable_id: uuid
 			  }));
 			
-			console.log(images_data);
-
-			// const images_data = [];
-			// for (let i = 0; i < data.getAll('currentImages').length; i++) {
-			// 	images_data.push({
-			// 		id: crypto.randomUUID(),
-			// 		key,
-			// 		hash: data.getAll('imagesOfCurrentProduct')[i],
-			// 		alt: data.get('value'),
-			// 		parentable_type: 'product',
-			// 		parentable_id: uuid
-			// 	});
-			// }
 
 			const variables = {
 				id: uuid,
@@ -81,7 +68,8 @@ export const actions = {
 				slug: createSlug(data.get('value')),
 				parentable_type: 'category',
 				parentable_id: data.get('category_uuid'),
-				images_data
+				images_data,
+				taggables_data
 				// images: JSON.parse(data.get('currentImages')) // Захардкодить для проверки
 			};
 

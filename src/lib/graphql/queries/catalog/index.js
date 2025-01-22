@@ -107,3 +107,12 @@ export const CATEGORY = gql`
 		}
 	}
 `;
+
+export const ALL_TAGS = gql`
+	query allTags($key: UUID!) {
+		all_tags(key: $key) {
+		  id
+		  value
+		}
+	  }
+`;

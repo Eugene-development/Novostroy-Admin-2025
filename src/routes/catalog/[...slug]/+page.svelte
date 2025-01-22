@@ -26,7 +26,7 @@
 </main>
 
 <!-- Modals -->
-<ProductFormCreate data={data.dataCategory.fullcategory} />
+<ProductFormCreate fullcategory={data.dataCategory.fullcategory} />
 <ProductFormUpdate {data} />
 <ProductFormDelete {data} />
 
