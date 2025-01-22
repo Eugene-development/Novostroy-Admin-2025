@@ -21,9 +21,9 @@
 
 	function handleTagChange(tagId, checked) {
 		if (checked) {
-			checkedTags = [...checkedTags, tagId];
+			checkedTags = [...checkedTags, { tag_id: tagId }];
 		} else {
-			checkedTags = checkedTags.filter(id => id !== tagId);
+			checkedTags = checkedTags.filter(id => id.id !== tagId);
 		}
 	}
 
@@ -597,7 +597,7 @@
 
 					<div class="sm:col-span-2">
 						<label class="mb-2 block text-sm font-medium text-gray-900 dark:text-white" for="role"
-							>Теги</label
+							>Теги:</label
 						>
 						<div class="space-y-4 grid gap-4 sm:grid-cols-6 sm:space-y-0">
 							{#each all_tags as tag, index}
@@ -620,15 +620,20 @@
 							{/each}
 							
 						</div>
+						<input 
+								type="hidden" 
+								name="currentTagsID" 
+								value={JSON.stringify(checkedTags)} 
+							/>
 					</div>
 					<div>
-						<div class="mb-2 text-sm font-medium text-gray-900 dark:text-white">Статус</div>
+						<div class="mb-2 text-sm font-medium text-gray-900 dark:text-white">Статус:</div>
 						<label for="user-status" class="relative inline-flex cursor-pointer items-center">
 							<input type="checkbox" value="" id="user-status" class="peer sr-only" />
 							<div
 								class="peer-focus:!ring-primary-300 dark:peer-focus:!ring-primary-800 peer-checked:!bg-primary-600 h-6 w-11 rounded-full bg-gray-200 after:absolute after:left-[2px] after:top-[2px] after:h-5 after:w-5 after:rounded-full after:border after:border-gray-300 after:bg-white after:!transition-all after:content-[''] peer-checked:after:!translate-x-full peer-checked:after:!border-white peer-focus:!outline-none peer-focus:!ring-4 dark:border-gray-600 dark:bg-gray-700"
 							></div>
-							<span class="ml-3 text-sm font-medium text-gray-500 dark:text-gray-300">Inactive</span
+							<span class="ml-3 text-sm font-medium text-gray-500 dark:text-gray-300">Не активен</span
 							>
 						</label>
 					</div>

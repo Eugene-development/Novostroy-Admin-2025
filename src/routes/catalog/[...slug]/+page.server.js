@@ -49,7 +49,7 @@ export const actions = {
 			const data = await request.formData();
 
 			const imagesHash = JSON.parse(data.get('currentImagesHash'));
-			console.log(imagesHash);
+			const taggablesID = JSON.parse(data.get('currentTagsID'));
 
 			const images_data = imagesHash.map(obj => ({
 				...obj,
@@ -59,7 +59,12 @@ export const actions = {
 				parentable_type: 'product',
 				parentable_id: uuid
 			  }));
-			
+
+			const taggables_data = taggablesID.map(obj => ({
+				...obj,
+				taggable_type: 'product',
+				taggable_id: uuid
+			  }));
 
 			const variables = {
 				id: uuid,
