@@ -47,7 +47,7 @@
 <section class="bg-gray-50 py-3 sm:py-5">
 	<div class="mx-auto max-w-screen-2xl px-4 lg:px-12">
 		<!-- Start coding here -->
-		<div class="relative overflow-hidden bg-white shadow-md sm:rounded-lg">
+		<div class="relative  bg-white shadow-md sm:rounded-lg">
 			<div
 				class="flex flex-col items-center justify-between space-y-3 border-b p-4 md:flex-row md:space-x-4 md:space-y-0"
 			>
@@ -189,7 +189,7 @@
 
 							{#if visibleSubCatalog}
 								<div
-									class="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none sm:text-sm"
+									class="absolute z-50 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none sm:text-sm"
 									tabindex="-1"
 									role="listbox"
 									aria-labelledby="listbox-label"
@@ -211,7 +211,6 @@
 												<!-- Selected: "font-semibold", Not Selected: "font-normal" -->
 												<span class="ml-3 block truncate font-normal">
 													{item.value}
-													<span class="sr-only"> is online</span>
 												</span>
 											</div>
 										</button>

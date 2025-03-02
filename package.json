@@ -33,6 +33,7 @@
 		"axios": "^1.7.9",
 		"cropperjs": "^1.6.2",
 		"graphql-request": "^7.1.2",
-		"runed": "^0.23.0"
+		"runed": "^0.23.1",
+		"openai": "^4.80.1"
 	}
 }
