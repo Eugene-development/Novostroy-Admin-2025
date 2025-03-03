@@ -136,6 +136,9 @@
 					formError = false;
 					// Очищаем массив изображений при успешном создании продукта
 					currentImages = [];
+					// Сбрасываем состояние кроппера
+					imageUrl = "";
+					visibleFileCropperSection = false;
 					// Закрываем модальное окно после успешного создания
 					setTimeout(() => {
 						visibleProductFormCreate.value = false;
