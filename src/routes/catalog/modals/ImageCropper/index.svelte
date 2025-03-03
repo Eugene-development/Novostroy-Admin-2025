@@ -53,7 +53,7 @@
 				if (cropper) {
 					cropper.destroy();
 				}
-				const isVertical = img.height >= img.width;
+				const isVertical = img.height > img.width;
 				const aspectRatio = isVertical ? 3 / 4 : 4 / 3;
 
 				cropper = new Cropper(imageElement, {

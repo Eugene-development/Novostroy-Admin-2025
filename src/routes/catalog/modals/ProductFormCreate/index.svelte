@@ -134,6 +134,8 @@
 				if (result.data.success) {
 					formMessage = 'Продукт успешно создан';
 					formError = false;
+					// Очищаем массив изображений при успешном создании продукта
+					currentImages = [];
 					// Закрываем модальное окно после успешного создания
 					setTimeout(() => {
 						visibleProductFormCreate.value = false;
