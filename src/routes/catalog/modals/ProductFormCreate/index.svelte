@@ -71,7 +71,7 @@
 			const blob = await response.blob();
 			const urlIMAGE = import.meta.env.VITE_URL_IMAGE;
 			const formData = new FormData();
-			
+
 			formData.append('image', blob, 'image/jpeg');
 
 			const result = await axios.post(urlIMAGE, formData, {
