@@ -8,6 +8,7 @@
 	let imageElement;
 	let cropper;
 	let isFlipped = $state(false);
+	let useAspectRatio = $state(false);
 	let watermarkText = 'NOVOSTROY'; // Текст водяного знака
 
 	function addWatermark(canvas) {
@@ -45,7 +46,17 @@
 		}
 	}
 
-	$effect(() => {
+	function toggleAspectRatio() {
+		useAspectRatio = !useAspectRatio;
+		
+		// Reinitialize cropper with new settings
+		if (imageElement && imageUrl && cropper) {
+			cropper.destroy();
+			initializeCropper();
+		}
+	}
+
+	function initializeCropper() {
 		if (imageElement && imageUrl) {
 			const img = new Image();
 			img.src = imageUrl;
@@ -57,7 +68,8 @@
 				const aspectRatio = isVertical ? 3 / 4 : 4 / 3;
 
 				cropper = new Cropper(imageElement, {
-					aspectRatio,
+					// Only apply aspectRatio if it's enabled
+					...(useAspectRatio ? { aspectRatio } : {}),
 					viewMode: 1,
 					autoCropArea: 1.0,
 					dragMode: 'move',
@@ -66,6 +78,10 @@
 				});
 			};
 		}
+	}
+
+	$effect(() => {
+		initializeCropper();
 	});
 
 	onMount(() => {
@@ -98,6 +114,13 @@
 
 <div class="flex flex-col gap-4">
 	<div class="flex justify-end gap-2">
+		<button
+			type="button"
+			class="flex items-center gap-2 rounded-lg bg-gray-200 px-4 py-2 text-gray-700 transition-colors hover:bg-gray-300"
+			onclick={toggleAspectRatio}
+		>
+			{useAspectRatio ? 'Свободное соотношение' : 'Фиксированное соотношение'}
+		</button>
 		<button
 			type="button"
 			class="flex items-center gap-2 rounded-lg bg-gray-200 px-4 py-2 text-gray-700 transition-colors hover:bg-gray-300"
