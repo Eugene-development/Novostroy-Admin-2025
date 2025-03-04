@@ -69,11 +69,12 @@
 			
 			const response = await fetch(compressedImage);
 			const blob = await response.blob();
-
+			const urlIMAGE = import.meta.env.VITE_URL_IMAGE;
 			const formData = new FormData();
+			
 			formData.append('image', blob, 'image/jpeg');
 
-			const result = await axios.post('http://localhost:8001/upload-image', formData, {
+			const result = await axios.post(urlIMAGE, formData, {
 				headers: {
 					'Content-Type': 'multipart/form-data',
 					'Project': 'novostroy'

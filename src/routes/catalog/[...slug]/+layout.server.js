@@ -3,7 +3,7 @@ import { request } from 'graphql-request';
 import { FULLCATEGORY, FULLCATALOG, ALL_TAGS } from '$lib/graphql/queries/catalog/index.js';
 
 export async function load({ params, url }) {
-	const urlCRUD = import.meta.env.VITE_URL;
+	const urlCRUD = import.meta.env.VITE_URL_CRUD;
 	const key = import.meta.env.VITE_KEY;
 
 	try {

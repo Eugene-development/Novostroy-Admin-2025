@@ -7,18 +7,13 @@ import { createSlug } from '$lib/utils/slug.js';
 // TEST DeepSeek
 // import OpenAI from "openai";
 
-
-
 export async function load({ params, url }) {
-	const urlCRUD = import.meta.env.VITE_URL;
+	const urlCRUD = import.meta.env.VITE_URL_CRUD;
 	const key = import.meta.env.VITE_KEY;
 
 	const segments = url.pathname.split('/').filter((segment) => segment.length > 0);
 
 	let isCategory;
-
-
-	
 
 	try {
 		if (segments[3]) {
@@ -41,7 +36,7 @@ export async function load({ params, url }) {
 
 /** @satisfies {import('./$types').Actions} */
 
-const urlCRUD = import.meta.env.VITE_URL;
+const urlCRUD = import.meta.env.VITE_URL_CRUD;
 const key = import.meta.env.VITE_KEY;
 
 const graphQLClient = new GraphQLClient(urlCRUD, {
@@ -53,39 +48,39 @@ const graphQLClient = new GraphQLClient(urlCRUD, {
 export const actions = {
 	addProduct: async ({ request }) => {
 		try {
-		// TEST DeepSeek
-		// 	const openai = new OpenAI({
-		// 		baseURL: 'https://api.deepseek.com',
-		// 		apiKey: 'sk-079a36e8f7b44f04ae26c560847028ee'
-		// });
-		//   const completion = await openai.chat.completions.create({
-		// 	messages: [{ role: "system", content: "Hello." }],
-		// 	model: "deepseek-chat",
-		//   });
-		
-		//   console.log(completion.choices[0].message.content);
-		// 
-		
+			// TEST DeepSeek
+			// 	const openai = new OpenAI({
+			// 		baseURL: 'https://api.deepseek.com',
+			// 		apiKey: 'sk-079a36e8f7b44f04ae26c560847028ee'
+			// });
+			//   const completion = await openai.chat.completions.create({
+			// 	messages: [{ role: "system", content: "Hello." }],
+			// 	model: "deepseek-chat",
+			//   });
+
+			//   console.log(completion.choices[0].message.content);
+			//
+
 			const uuid = crypto.randomUUID();
 			const data = await request.formData();
 
 			const imagesHash = JSON.parse(data.get('currentImagesHash'));
 			const taggablesID = JSON.parse(data.get('currentTagsID'));
 
-			const images_data = imagesHash.map(obj => ({
+			const images_data = imagesHash.map((obj) => ({
 				...obj,
 				id: crypto.randomUUID(),
 				key,
 				alt: data.get('value'),
 				parentable_type: 'product',
 				parentable_id: uuid
-			  }));
+			}));
 
-			const taggables_data = taggablesID.map(obj => ({
+			const taggables_data = taggablesID.map((obj) => ({
 				...obj,
 				taggable_type: 'product',
 				taggable_id: uuid
-			  }));
+			}));
 
 			const variables = {
 				id: uuid,
@@ -98,7 +93,6 @@ export const actions = {
 				taggables_data
 				// images: JSON.parse(data.get('currentImages')) // Захардкодить для проверки
 			};
-
 
 			const result = await graphQLClient.request(CREATE_PRODUCT, variables);
 
