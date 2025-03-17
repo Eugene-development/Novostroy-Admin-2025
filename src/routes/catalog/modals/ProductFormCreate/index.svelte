@@ -140,6 +140,8 @@
 					// Сбрасываем состояние кроппера
 					imageUrl = "";
 					visibleFileCropperSection = false;
+					// Очищаем список тегов
+					checkedTags = []
 					// Закрываем модальное окно после успешного создания
 					setTimeout(() => {
 						visibleProductFormCreate.value = false;
