@@ -14,6 +14,9 @@ export async function load({ params, url }) {
 		const dataCategory = await request(urlCRUD, FULLCATEGORY, variables);
 		const dataTags = await request(urlCRUD, ALL_TAGS, variables);
 
+		// Sort fullcategory array alphabetically by value property
+		dataCategory?.fullcategory?.sort((a, b) => a.value.localeCompare(b.value));
+
 		return {
 			req,
 			dataCategory,
