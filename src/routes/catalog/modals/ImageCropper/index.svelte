@@ -105,6 +105,13 @@
 
 				addWatermark(watermarkedCanvas);
 
+				// Reset the flipped state after cropping
+				if (isFlipped) {
+					isFlipped = false;
+					// Reset the image scale in the cropper
+					// cropper.scaleX(1);
+				}
+
 				return watermarkedCanvas.toDataURL();
 			}
 		}
