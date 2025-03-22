@@ -83,6 +83,10 @@
 
 			uploadStatus.success = true;
 			currentImages = [...currentImages, { hash: result.data }];
+			
+			console.log('currentImages', currentImages);
+
+
 			return result.data;
 		} catch (error) {
 			uploadStatus.error = error.message;

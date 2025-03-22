@@ -47,7 +47,7 @@ export const FULLCATEGORY = gql`
 `;
 
 export const CATEGORY = gql`
-	query category($slug: String!, $key: UUID!) {
+	query category($slug: String!, $key: CustomID!) {
 		category(slug: $slug, key: $key) {
 			value
 			slug
@@ -109,10 +109,10 @@ export const CATEGORY = gql`
 `;
 
 export const ALL_TAGS = gql`
-	query allTags($key: UUID!) {
+	query allTags($key: CustomID!) {
 		all_tags(key: $key) {
-		  id
-		  value
+			id
+			value
 		}
-	  }
+	}
 `;

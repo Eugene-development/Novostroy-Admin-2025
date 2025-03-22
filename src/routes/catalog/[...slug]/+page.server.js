@@ -3,6 +3,7 @@ import { request, gql, GraphQLClient } from 'graphql-request';
 import { CATEGORY } from '$lib/graphql/queries/catalog/index.js';
 import { CREATE_PRODUCT } from '$lib/graphql/mutations/catalog/index.js';
 import { createSlug } from '$lib/utils/slug.js';
+import { ulid } from 'ulid'; // Import the ULID library
 
 // TEST DeepSeek
 // import OpenAI from "openai";
@@ -61,20 +62,32 @@ export const actions = {
 			//   console.log(completion.choices[0].message.content);
 			//
 
-			const uuid = crypto.randomUUID();
 			const data = await request.formData();
 
 			const imagesHash = JSON.parse(data.get('currentImagesHash'));
 			const taggablesID = JSON.parse(data.get('currentTagsID'));
 
-			const images_data = imagesHash.map((obj) => ({
-				...obj,
-				id: crypto.randomUUID(),
-				key,
-				alt: data.get('value'),
-				parentable_type: 'product',
-				parentable_id: uuid
-			}));
+			const uuid = crypto.randomUUID();
+			// const ulid = ulid();
+			// console.log(ulid);
+			// Generate a ULID for the product
+			// Use Promise.all with setTimeout to add a 5ms delay between each ULID generation
+			const images_data = await Promise.all(
+				imagesHash.map(async (obj, index) => {
+					// Add a delay of 5ms multiplied by the index to ensure each ULID has a different timestamp
+					await new Promise((resolve) => setTimeout(resolve, 5 * index));
+					return {
+						...obj,
+						id: ulid(),
+						key,
+						alt: data.get('value'),
+						parentable_type: 'product',
+						parentable_id: uuid
+					};
+				})
+			);
+
+			console.log(images_data);
 
 			const taggables_data = taggablesID.map((obj) => ({
 				...obj,
