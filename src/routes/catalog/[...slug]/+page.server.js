@@ -68,14 +68,11 @@ export const actions = {
 			const taggablesID = JSON.parse(data.get('currentTagsID'));
 
 			const uuid = crypto.randomUUID();
-			// const ulid = ulid();
-			// console.log(ulid);
-			// Generate a ULID for the product
 			// Use Promise.all with setTimeout to add a 5ms delay between each ULID generation
 			const images_data = await Promise.all(
 				imagesHash.map(async (obj, index) => {
 					// Add a delay of 5ms multiplied by the index to ensure each ULID has a different timestamp
-					await new Promise((resolve) => setTimeout(resolve, 5 * index));
+					await new Promise((resolve) => setTimeout(resolve, 5));
 					return {
 						...obj,
 						id: ulid(),

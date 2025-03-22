@@ -83,8 +83,8 @@
 
 			uploadStatus.success = true;
 			currentImages = [...currentImages, { hash: result.data }];
-			
-			console.log('currentImages', currentImages);
+
+			// console.log('currentImages', currentImages);
 
 
 			return result.data;
