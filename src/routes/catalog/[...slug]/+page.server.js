@@ -65,24 +65,24 @@ export const actions = {
 			const data = await request.formData();
 
 			const imagesHash = JSON.parse(data.get('currentImagesHash'));
+
+			console.log(imagesHash);
 			const taggablesID = JSON.parse(data.get('currentTagsID'));
 
 			const uuid = crypto.randomUUID();
-			// Use Promise.all with setTimeout to add a 5ms delay between each ULID generation
-			const images_data = await Promise.all(
-				imagesHash.map(async (obj, index) => {
-					// Add a delay of 5ms multiplied by the index to ensure each ULID has a different timestamp
-					await new Promise((resolve) => setTimeout(resolve, 5));
-					return {
-						...obj,
-						id: ulid(),
-						key,
-						alt: data.get('value'),
-						parentable_type: 'product',
-						parentable_id: uuid
-					};
-				})
-			);
+			const images_data = [];
+			for (let index = 0; index < imagesHash.length; index++) {
+				await new Promise((resolve) => setTimeout(resolve, 50 * (index + 1))); // Задержка: 50, 100, 150... мс
+				const obj = imagesHash[index];
+				images_data.push({
+					...obj,
+					id: ulid(),
+					key,
+					alt: data.get('value'),
+					parentable_type: 'product',
+					parentable_id: uuid
+				});
+			}
 
 			console.log(images_data);
 
