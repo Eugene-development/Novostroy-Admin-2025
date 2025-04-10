@@ -72,7 +72,7 @@ export const actions = {
 			const uuid = crypto.randomUUID();
 			const images_data = [];
 			for (let index = 0; index < imagesHash.length; index++) {
-				await new Promise((resolve) => setTimeout(resolve, 50 * (index + 1))); // Задержка: 50, 100, 150... мс
+				await new Promise((resolve) => setTimeout(resolve, 5 * (index + 1))); // Задержка: 5, 10, 15... мс
 				const obj = imagesHash[index];
 				images_data.push({
 					...obj,
@@ -84,7 +84,7 @@ export const actions = {
 				});
 			}
 
-			console.log(images_data);
+			// console.log(images_data);
 
 			const taggables_data = taggablesID.map((obj) => ({
 				...obj,
