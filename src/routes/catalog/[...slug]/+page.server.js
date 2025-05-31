@@ -49,24 +49,10 @@ const graphQLClient = new GraphQLClient(urlCRUD, {
 export const actions = {
 	addProduct: async ({ request }) => {
 		try {
-			// TEST DeepSeek
-			// 	const openai = new OpenAI({
-			// 		baseURL: 'https://api.deepseek.com',
-			// 		apiKey: 'sk-079a36e8f7b44f04ae26c560847028ee'
-			// });
-			//   const completion = await openai.chat.completions.create({
-			// 	messages: [{ role: "system", content: "Hello." }],
-			// 	model: "deepseek-chat",
-			//   });
-
-			//   console.log(completion.choices[0].message.content);
-			//
-
 			const data = await request.formData();
 
 			const imagesHash = JSON.parse(data.get('currentImagesHash'));
 
-			console.log(imagesHash);
 			const taggablesID = JSON.parse(data.get('currentTagsID'));
 
 			const uuid = crypto.randomUUID();
