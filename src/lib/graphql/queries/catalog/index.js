@@ -61,6 +61,9 @@ export const CATEGORY = gql`
 				id
 				value
 				slug
+				created_at
+				updated_at
+
 				unit {
 					value
 				}

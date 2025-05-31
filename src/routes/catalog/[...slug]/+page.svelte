@@ -21,7 +21,7 @@
 	{#if data.isCategory}
 		<Category data={data.req.category} />
 	{:else}
-		<div>12345</div>
+		<div>В каталоге пусто</div>
 	{/if}
 </main>
 

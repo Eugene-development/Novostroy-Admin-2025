@@ -59,8 +59,12 @@
 	</th>
 	<td class="px-4 py-3">{data.parentable.parentable.value}</td>
 	<td class="whitespace-nowrap px-4 py-3 font-medium text-gray-900">{data.parentable.value}</td>
-	<td class="whitespace-nowrap px-4 py-3 font-medium text-gray-900">$2999</td>
-	<td class="whitespace-nowrap px-4 py-3 font-medium text-gray-900">200</td>
+	<td class="whitespace-nowrap px-4 py-3 font-medium text-gray-900">{data.created_at}</td>
+	{#if data.created_at != data.updated_at}
+		<td class="whitespace-nowrap px-4 py-3 font-medium text-gray-900">{data.updated_at}</td>
+	{:else}
+		<td class="whitespace-nowrap px-4 py-3 font-medium text-gray-900">-</td>
+	{/if}
 	<!-- <td class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap">245</td> -->
 	<td class="whitespace-nowrap px-4 py-3">
 		<div class="mr-2 w-fit rounded bg-green-100 px-2.5 py-0.5 text-xs font-medium text-green-800">
