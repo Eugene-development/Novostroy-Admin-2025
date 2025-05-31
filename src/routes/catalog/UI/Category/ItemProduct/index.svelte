@@ -93,9 +93,7 @@
 			<div>
 				<h6 class="mb-2 text-base font-medium leading-none text-gray-900">Описание</h6>
 				<div class="max-w-screen-md text-base text-gray-500">
-					Standard glass, 3.8GHz 8-core 10th-generation Intel Core i7 processor, Turbo Boost up to
-					5.0GHz, 16GB 2666MHz DDR4 memory, Radeon Pro 5500 XT with 8GB of GDDR6 memory, 256GB SSD
-					storage, Gigabit Ethernet, Magic Mouse 2, Magic Keyboard - US.
+					{data?.text ? data.text.value : 'Нет описания'}
 				</div>
 			</div>
 			<div class="mt-4 grid grid-cols-4 gap-4">

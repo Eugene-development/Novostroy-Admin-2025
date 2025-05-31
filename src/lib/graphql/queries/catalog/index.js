@@ -76,6 +76,9 @@ export const CATEGORY = gql`
 				tag {
 					value
 				}
+				text {
+					value
+				}
 				parentable {
 					... on Category {
 						value
