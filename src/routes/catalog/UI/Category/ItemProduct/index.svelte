@@ -1,10 +1,16 @@
 <script>
 	/** @type {import('./$types').PageData} */
 	// import { isVisibleCurrentProduct } from '$lib/state/visibleCurrentProduct.svelte';
+	import { visibleProductFormUpdate, currentEditingProduct } from '$lib/state/productFormUpdate.svelte';
 	const isVisibleCurrentProduct = $state({
 		value: false
 	});
 	let { data } = $props();
+
+	function handleEdit() {
+		currentEditingProduct.data = data;
+		visibleProductFormUpdate.value = true;
+	}
 </script>
 
 <tr
@@ -150,6 +156,7 @@
 			</div>
 			<div class="mt-4 flex items-center space-x-3">
 				<button
+					onclick={handleEdit}
 					type="button"
 					class="bg-primary-700 hover:bg-primary-800 focus:ring-primary-300 flex items-center rounded-lg px-3 py-2 text-center text-sm font-medium text-gray-800 focus:outline-none focus:ring-4"
 				>

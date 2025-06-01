@@ -28,6 +28,38 @@ export const CREATE_PRODUCT = gql`
 	}
 `;
 
+export const UPDATE_PRODUCT = gql`
+	mutation update_product(
+		$key: CustomID!
+		$value: String!
+		$slug: String!
+		$id: CustomID!
+		$parentable_type: String
+		$parentable_id: CustomID
+		$is_active: Boolean
+		$text_value: String
+		$images_data: [CreateImageInput!]
+		$taggables_data: [CreateTaggableInput!]
+	) {
+		updateProduct(
+			input: {
+				id: $id
+				key: $key
+				value: $value
+				slug: $slug
+				parentable_type: $parentable_type
+				parentable_id: $parentable_id
+				is_active: $is_active
+				text: { value: $text_value }
+				image: { create: $images_data }
+				taggables: { create: $taggables_data }
+			}
+		) {
+			id
+		}
+	}
+`;
+
 // export const CREATE_PRODUCT = gql`
 // 	mutation create_product(
 // 		$id: UUID!

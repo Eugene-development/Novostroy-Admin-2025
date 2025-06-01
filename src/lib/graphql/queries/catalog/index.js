@@ -72,9 +72,11 @@ export const CATEGORY = gql`
 					value
 				}
 				image {
+					id
 					hash
 				}
 				tag {
+					id
 					value
 				}
 				text {

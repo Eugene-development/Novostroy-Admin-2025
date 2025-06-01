@@ -1,7 +1,7 @@
 /** @type {import('./$types').PageServerLoad} */
 import { request, gql, GraphQLClient } from 'graphql-request';
 import { CATEGORY } from '$lib/graphql/queries/catalog/index.js';
-import { CREATE_PRODUCT } from '$lib/graphql/mutations/catalog/index.js';
+import { CREATE_PRODUCT, UPDATE_PRODUCT } from '$lib/graphql/mutations/catalog/index.js';
 import { createSlug } from '$lib/utils/slug.js';
 import { ulid } from 'ulid'; // Import the ULID library
 
@@ -95,6 +95,63 @@ export const actions = {
 			return { success: true, data: result };
 		} catch (error) {
 			console.error('Error creating product:', error);
+			return { success: false, error: error.message };
+		}
+	},
+
+	updateProduct: async ({ request }) => {
+		try {
+			const data = await request.formData();
+
+			const productId = data.get('product_id');
+			const imagesHash = JSON.parse(data.get('currentImagesHash'));
+			const taggablesID = JSON.parse(data.get('currentTagsID'));
+
+			// Подготавливаем данные изображений для обновления
+			const images_data = [];
+			const newImages = imagesHash.filter((img) => !img.id); // Новые изображения не имеют id
+
+			for (let index = 0; index < newImages.length; index++) {
+				await new Promise((resolve) => setTimeout(resolve, 5 * (index + 1)));
+				const obj = newImages[index];
+				images_data.push({
+					...obj,
+					id: ulid(),
+					key,
+					alt: data.get('value'),
+					parentable_type: 'product',
+					parentable_id: productId
+				});
+			}
+
+			// Подготавливаем данные тегов
+			const taggables_data = taggablesID.map((obj) => ({
+				...obj,
+				taggable_type: 'product',
+				taggable_id: productId
+			}));
+
+			// Обновляем структуру переменных для мутации updateProduct
+			const variables = {
+				key,
+				value: data.get('value'),
+				slug: createSlug(data.get('value')),
+				id: productId,
+				parentable_type: 'category',
+				parentable_id: data.get('category_uuid'),
+				is_active: data.get('is_active') === 'true',
+				text_value: data.get('description'),
+				images_data: images_data.length > 0 ? images_data : undefined,
+				taggables_data: taggables_data.length > 0 ? taggables_data : undefined
+			};
+
+			console.log(variables);
+
+			const result = await graphQLClient.request(UPDATE_PRODUCT, variables);
+
+			return { success: true, data: result };
+		} catch (error) {
+			console.error('Error updating product:', error);
 			return { success: false, error: error.message };
 		}
 	}
