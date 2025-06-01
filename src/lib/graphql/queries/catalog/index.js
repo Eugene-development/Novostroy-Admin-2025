@@ -59,6 +59,7 @@ export const CATEGORY = gql`
 			}
 			product {
 				id
+				is_active
 				value
 				slug
 				created_at
