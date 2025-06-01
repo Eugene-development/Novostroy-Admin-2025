@@ -139,14 +139,9 @@
 				</div>
 				<div class="relative rounded-lg bg-gray-100 p-3">
 					<h6 class="mb-2 text-base font-medium leading-none text-gray-900">Теги</h6>
-					<div class="flex items-center space-x-2">
-						<div class="h-6 w-6 rounded-full bg-purple-600"></div>
-						<div class="h-6 w-6 rounded-full bg-green-400"></div>
-						<div class="bg-primary-600 h-6 w-6 rounded-full"></div>
-						<div class="h-6 w-6 rounded-full bg-pink-400"></div>
-						<div class="h-6 w-6 rounded-full bg-teal-300"></div>
-						<div class="h-6 w-6 rounded-full bg-green-300"></div>
-					</div>
+					{#each data?.tag || [] as tag}
+						<div>{tag.value}</div>
+					{/each}
 				</div>
 				<div class="relative rounded-lg bg-gray-100 p-3">
 					<h6 class="mb-2 text-base font-medium leading-none text-gray-900">Наименование</h6>
