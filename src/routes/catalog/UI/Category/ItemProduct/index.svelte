@@ -169,7 +169,7 @@
 							clip-rule="evenodd"
 						/>
 					</svg>
-					Применить
+					Редактировать
 				</button>
 				<button
 					type="button"
