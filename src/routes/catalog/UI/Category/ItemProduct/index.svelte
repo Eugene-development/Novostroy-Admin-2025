@@ -51,7 +51,7 @@
 	</td>
 	<th scope="row" class="flex items-center whitespace-nowrap px-4 py-3 font-medium text-gray-900">
 		<img
-			src={`${import.meta.env.VITE_S3}/catalog/${data.image[0].hash}`}
+			src={`${import.meta.env.VITE_S3}/catalog/${data.image[data.image.length - 1].hash}`}
 			alt="iMac Front"
 			class="mr-3 h-8 w-auto"
 		/>
@@ -80,15 +80,17 @@
 	>
 		<td class="border-b p-4" colspan="9">
 			<div class="mb-4 grid grid-cols-4 gap-4">
-				<div
-					class="relative flex h-32 items-center justify-center rounded-lg border bg-gray-100 p-2 sm:h-36 sm:w-full"
-				>
-					<img
-						src="https://flowbite.s3.amazonaws.com/blocks/application-ui/products/imac-front-image.png"
-						alt="iMac Front"
-						class="h-full w-auto"
-					/>
-				</div>
+				{#each data.image.reverse() as image}
+					<div
+						class="relative flex h-32 items-center justify-center rounded-lg border bg-gray-100 p-2 sm:h-36 sm:w-full"
+					>
+						<img
+							src={`${import.meta.env.VITE_S3}/catalog/${image.hash}`}
+							alt={data.value}
+							class="h-full w-auto"
+						/>
+					</div>
+				{/each}
 			</div>
 			<div>
 				<h6 class="mb-2 text-base font-medium leading-none text-gray-900">Описание</h6>
