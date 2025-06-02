@@ -88,7 +88,7 @@
 			<div class="mb-4 grid grid-cols-4 gap-4">
 				{#each data.image.reverse() as image}
 					<div
-						class="relative flex h-32 items-center justify-center rounded-lg border bg-gray-100 p-2 sm:h-36 sm:w-full"
+						class="relative flex h-32 items-center justify-center rounded-lg border bg-gray-100 p-2 sm:h-48 sm:w-full"
 					>
 						<img
 							src={`${import.meta.env.VITE_S3}/catalog/${image.hash}`}
@@ -104,8 +104,13 @@
 					{data?.text ? data.text.value : 'Нет описания'}
 				</div>
 			</div>
-			<div class="mt-4 grid grid-cols-4 gap-4">
-				<div class="relative flex flex-col items-start justify-between rounded-lg bg-gray-100 p-3">
+
+
+			<div>
+
+				<h6 class="my-4 text-base font-medium leading-none text-gray-900">Теги</h6>
+<div class="mt-4 grid grid-cols-4 gap-4">
+				<!-- <div class="relative flex flex-col items-start justify-between rounded-lg bg-gray-100 p-3">
 					<h6 class="mb-2 text-base font-medium leading-none text-gray-900">Статус</h6>
 					<div
 						class="bg-primary-100 text-primary-800 flex items-center rounded-md px-2.5 py-0.5 text-xs font-medium"
@@ -123,8 +128,8 @@
 						</svg>
 						{data?.is_active ? 'Активно' : 'Не активно'}
 					</div>
-				</div>
-				<div class="relative flex flex-col justify-between rounded-lg bg-gray-100 p-3">
+				</div> -->
+				<!-- <div class="relative flex flex-col justify-between rounded-lg bg-gray-100 p-3">
 					<h6 class="mb-2 text-base font-medium leading-none text-gray-900">Категория</h6>
 					<div class="flex items-center text-gray-500">
 						<svg
@@ -142,19 +147,26 @@
 						</svg>
 						Worldwide
 					</div>
-				</div>
-				<div class="relative rounded-lg bg-gray-100 p-3">
-					<h6 class="mb-2 text-base font-medium leading-none text-gray-900">Теги</h6>
+				</div> -->
+				
+
+				
 					{#each data?.tag || [] as tag}
+					<div class="relative rounded-lg bg-gray-100 p-3">
 						<div>{tag.value}</div>
+					</div>
 					{/each}
-				</div>
-				<div class="relative rounded-lg bg-gray-100 p-3">
+				
+				<!-- <div class="relative rounded-lg bg-gray-100 p-3">
 					<h6 class="mb-2 text-base font-medium leading-none text-gray-900">Наименование</h6>
 					<div class="flex items-center text-gray-500">{data.value}</div>
-				</div>
+				</div> -->
 			</div>
-			<div class="mt-4 flex items-center space-x-3">
+			</div>
+
+
+			
+			<div class="mt-8 flex items-center space-x-3">
 				<button
 					onclick={handleEdit}
 					type="button"
