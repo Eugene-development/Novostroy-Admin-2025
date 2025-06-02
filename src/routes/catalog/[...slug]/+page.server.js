@@ -140,12 +140,12 @@ export const actions = {
 				parentable_type: 'category',
 				parentable_id: data.get('category_uuid'),
 				is_active: data.get('is_active') === 'true',
-				text_value: data.get('description'),
+				text_value: { id: data.get('description_id'), value: data.get('description'), key },
 				images_data: images_data.length > 0 ? images_data : undefined,
 				taggables_data: taggables_data.length > 0 ? taggables_data : undefined
 			};
 
-			console.log(variables);
+			console.log(variables.text_value);
 
 			const result = await graphQLClient.request(UPDATE_PRODUCT, variables);
 

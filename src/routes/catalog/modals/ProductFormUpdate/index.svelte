@@ -222,6 +222,8 @@
 					
 					<!-- Hidden field for product ID -->
 					<input type="hidden" name="product_id" value={currentEditingProduct.data.id} />
+					<!-- Hidden field for description (text) ID -->
+					<input type="hidden" name="description_id" value={currentEditingProduct.data.text?.id || ''} />
 					
 					<div class="mb-4 grid gap-4 sm:grid-cols-2">
 						<div>

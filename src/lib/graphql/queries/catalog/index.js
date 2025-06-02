@@ -80,6 +80,7 @@ export const CATEGORY = gql`
 					value
 				}
 				text {
+					id
 					value
 				}
 				parentable {
