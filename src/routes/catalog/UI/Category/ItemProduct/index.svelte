@@ -190,11 +190,11 @@
 					</svg>
 					Редактировать
 				</button>
-				<button
+				<!-- <button
 					type="button"
 					class="hover:text-primary-700 flex items-center rounded-lg border border-gray-200 bg-white px-3 py-2 text-center text-sm font-medium text-gray-900 hover:bg-gray-100 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-200"
 					>Отменить
-				</button>
+				</button> -->
 				<button
 					type="button"
 					class="flex items-center rounded-lg bg-red-700 px-3 py-2 text-center text-sm font-medium text-white hover:bg-red-800 focus:ring-4 focus:ring-red-300"
