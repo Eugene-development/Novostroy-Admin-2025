@@ -157,8 +157,7 @@
 					setTimeout(() => {
 						visibleProductFormUpdate.value = false;
 						formMessage = '';
-						// Перезагружаем страницу для обновления данных
-						window.location.reload();
+						// Удаляем перезагрузку страницы
 					}, 2000);
 				} else {
 					formMessage = `Ошибка: ${result.data.error}`;
