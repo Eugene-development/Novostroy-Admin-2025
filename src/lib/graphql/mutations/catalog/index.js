@@ -59,6 +59,14 @@ export const UPDATE_PRODUCT = gql`
 	}
 `;
 
+export const DELETE_PRODUCT = gql`
+	mutation delete_product($id: CustomID!) {
+		deleteProduct(id: $id) {
+			id
+		}
+	}
+`;
+
 // export const CREATE_PRODUCT = gql`
 // 	mutation create_product(
 // 		$id: UUID!

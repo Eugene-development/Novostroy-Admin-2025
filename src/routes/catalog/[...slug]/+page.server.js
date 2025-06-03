@@ -1,7 +1,11 @@
 /** @type {import('./$types').PageServerLoad} */
 import { request, gql, GraphQLClient } from 'graphql-request';
 import { CATEGORY } from '$lib/graphql/queries/catalog/index.js';
-import { CREATE_PRODUCT, UPDATE_PRODUCT } from '$lib/graphql/mutations/catalog/index.js';
+import {
+	CREATE_PRODUCT,
+	UPDATE_PRODUCT,
+	DELETE_PRODUCT
+} from '$lib/graphql/mutations/catalog/index.js';
 import { createSlug } from '$lib/utils/slug.js';
 import { ulid } from 'ulid'; // Import the ULID library
 
@@ -150,6 +154,22 @@ export const actions = {
 			return { success: true, data: result };
 		} catch (error) {
 			console.error('Error updating product:', error);
+			return { success: false, error: error.message };
+		}
+	},
+
+	deleteProduct: async ({ request }) => {
+		try {
+			const data = await request.formData();
+			const productId = data.get('product_id');
+			const variables = {
+				id: productId,
+				key
+			};
+			const result = await graphQLClient.request(DELETE_PRODUCT, variables);
+			return { success: true, data: result };
+		} catch (error) {
+			console.error('Error deleting product:', error);
 			return { success: false, error: error.message };
 		}
 	}

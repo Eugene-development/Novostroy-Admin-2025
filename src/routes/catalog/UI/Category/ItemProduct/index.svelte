@@ -2,6 +2,7 @@
 	/** @type {import('./$types').PageData} */
 	// import { isVisibleCurrentProduct } from '$lib/state/visibleCurrentProduct.svelte';
 	import { visibleProductFormUpdate, currentEditingProduct } from '$lib/state/productFormUpdate.svelte';
+	import { visibleProductFormDelete, currentDeletingProduct } from '$lib/state/productFormDelete.svelte';
 	const isVisibleCurrentProduct = $state({
 		value: false
 	});
@@ -10,6 +11,11 @@
 	function handleEdit() {
 		currentEditingProduct.data = data;
 		visibleProductFormUpdate.value = true;
+	}
+
+	function handleDelete() {
+		currentDeletingProduct.data = data;
+		visibleProductFormDelete.value = true;
 	}
 </script>
 
@@ -57,7 +63,7 @@
 	</td>
 	<th scope="row" class="flex items-center whitespace-nowrap px-4 py-3 font-medium text-gray-900">
 		<img
-			src={`${import.meta.env.VITE_S3}/catalog/${data.image[data.image.length - 1].hash}`}
+			src={`${import.meta.env.VITE_S3}/catalog/${data?.image[data.image.length - 1]?.hash}`}
 			alt="iMac Front"
 			class="mr-3 h-8 w-auto"
 		/>
@@ -86,12 +92,12 @@
 	>
 		<td class="border-b p-4" colspan="9">
 			<div class="mb-4 grid grid-cols-4 gap-4">
-				{#each data.image.reverse() as image}
+				{#each data?.image.reverse() as image}
 					<div
 						class="relative flex h-32 items-center justify-center rounded-lg border bg-gray-100 p-2 sm:h-48 sm:w-full"
 					>
 						<img
-							src={`${import.meta.env.VITE_S3}/catalog/${image.hash}`}
+							src={`${import.meta.env.VITE_S3}/catalog/${image?.hash}`}
 							alt={data.value}
 							class="h-full w-auto"
 						/>
@@ -196,6 +202,7 @@
 					>Отменить
 				</button> -->
 				<button
+					onclick={handleDelete}
 					type="button"
 					class="flex items-center rounded-lg bg-red-700 px-3 py-2 text-center text-sm font-medium text-white hover:bg-red-800 focus:ring-4 focus:ring-red-300"
 				>

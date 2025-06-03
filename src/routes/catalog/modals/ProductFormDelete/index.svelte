@@ -1,8 +1,34 @@
 <script>
-	import { visibleProductFormDelete } from '$lib/state/productFormDelete.svelte';
+	import { visibleProductFormDelete, currentDeletingProduct } from '$lib/state/productFormDelete.svelte';
+	import { invalidateAll } from '$app/navigation';
+	import { enhance } from '$app/forms';
+
+
+	let formMessage = $state('');
+	let formError = $state(false);
+
+	const handleSubmit = () => {
+		return async ({ result }) => {
+			if (result.type === 'success') {
+				if (result.data.success) {
+					formMessage = 'Продукт успешно удалён';
+					formError = false;
+					await invalidateAll();
+					setTimeout(() => {
+						visibleProductFormDelete.value = false;
+						formMessage = '';
+						currentDeletingProduct.data = null;
+					}, 1500);
+				} else {
+					formMessage = `Ошибка: ${result.data.error}`;
+					formError = true;
+				}
+			}
+		};
+	};
 </script>
 
-{#if visibleProductFormDelete.value}
+{#if visibleProductFormDelete.value && currentDeletingProduct.data}
 	<div class="relative z-30" aria-labelledby="modal-title" role="dialog" aria-modal="true">
 		<!--
       Background backdrop, show/hide based on modal state.
@@ -82,19 +108,29 @@
 							</div>
 						</div>
 					</div>
-					<div class="mt-5 sm:mt-4 sm:flex sm:flex-row-reverse">
-						<button
-							type="button"
-							class="inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto"
-							>Удалить</button
-						>
-						<button
-							onclick={() => (visibleProductFormDelete.value = false)}
-							type="button"
-							class="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto"
-							>Отмена</button
-						>
-					</div>
+					<form method="POST" action="?/deleteProduct" use:enhance={handleSubmit}>
+						{#if formMessage}
+							<div class="mb-4 rounded-lg p-4 {formError ? 'bg-red-100 text-red-700' : 'bg-green-100 text-green-700'}">
+								{formMessage}
+							</div>
+						{/if}
+						<input type="hidden" name="product_id" value={currentDeletingProduct.data.id} />
+						<div class="mt-5 sm:mt-4 sm:flex sm:flex-row-reverse">
+							<button
+								type="submit"
+								class="inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto"
+							>
+								Удалить
+							</button>
+							<button
+								onclick={() => (visibleProductFormDelete.value = false)}
+								type="button"
+								class="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto"
+							>
+								Отмена
+							</button>
+						</div>
+					</form>
 				</div>
 			</div>
 		</div>
