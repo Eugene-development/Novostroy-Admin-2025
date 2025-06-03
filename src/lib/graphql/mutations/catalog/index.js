@@ -38,8 +38,8 @@ export const UPDATE_PRODUCT = gql`
 		$parentable_id: CustomID
 		$is_active: Boolean
 		$text_value: UpdateTextInput! # $taggables_data: [CreateTaggableInput!]
-		# $images_data: [CreateImageInput!]
-	) {
+	) # $images_data: [CreateImageInput!]
+	{
 		updateProduct(
 			input: {
 				id: $id
