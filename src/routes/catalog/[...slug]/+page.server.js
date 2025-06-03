@@ -145,8 +145,6 @@ export const actions = {
 				taggables_data: taggables_data.length > 0 ? taggables_data : undefined
 			};
 
-			console.log(variables.text_value);
-
 			const result = await graphQLClient.request(UPDATE_PRODUCT, variables);
 
 			return { success: true, data: result };
