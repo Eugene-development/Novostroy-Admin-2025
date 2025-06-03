@@ -85,6 +85,7 @@ export const CATEGORY = gql`
 				}
 				parentable {
 					... on Category {
+						id
 						value
 						slug
 						parentable {
