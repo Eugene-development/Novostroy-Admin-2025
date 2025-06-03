@@ -3,6 +3,7 @@
 	import { enhance } from '$app/forms';
 	import ImageCropper from '../ImageCropper/index.svelte';
 	import axios from 'axios';
+	import { invalidateAll } from '$app/navigation';
 	
 	let { fullcategory, all_tags } = $props();
 	// $inspect('dataTags', all_tags );
@@ -145,7 +146,9 @@
 					imageUrl = "";
 					visibleFileCropperSection = false;
 					// Очищаем список тегов
-					checkedTags = []
+					checkedTags = [];
+					// Обновляем данные без перезагрузки страницы
+					await invalidateAll();
 					// Закрываем модальное окно после успешного создания
 					setTimeout(() => {
 						visibleProductFormCreate.value = false;

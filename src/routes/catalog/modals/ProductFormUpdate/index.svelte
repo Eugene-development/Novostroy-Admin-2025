@@ -3,6 +3,7 @@
 	import { enhance } from '$app/forms';
 	import ImageCropper from '../ImageCropper/index.svelte';
 	import axios from 'axios';
+	import { invalidateAll } from '$app/navigation';
 	
 	let { data } = $props();
 
@@ -153,6 +154,8 @@
 				if (result.data.success) {
 					formMessage = 'Продукт успешно обновлен';
 					formError = false;
+					// Обновляем данные без перезагрузки страницы
+					await invalidateAll();
 					// Закрываем модальное окно после успешного обновления
 					setTimeout(() => {
 						visibleProductFormUpdate.value = false;
